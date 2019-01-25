@@ -1,0 +1,285 @@
+\documentclass[a4paper,fleqn,usenatbib]{mnras}
+%=========================================================================
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{grffile}
+\usepackage{float}
+\usepackage[dvips]{epsfig}
+\usepackage{epsfig}
+\usepackage{dblfloatfix}
+\usepackage{color}
+\usepackage{caption}
+\usepackage{hyperref}
+\usepackage{bm}
+\usepackage[british]{babel}
+%Non reposionated tables
+\newcommand{\HI}{{\text{H\MakeUppercase{\romannumeral 1}}} }
+\newcommand{\lya}{\ifmmode{{\rm Ly}\alpha}\else Ly$\alpha$\ \fi}
+\newcommand{\kms}{\ifmmode\mathrm{km\ s}^{-1}\else km s$^{-1}$\fi}
+\newcommand{\vrot}{\ifmmode v_{\mathrm{rot}}\else $v_{\mathrm{rot}}$~\fi}
+\newcommand{\vout}{\ifmmode v_{\mathrm{out}}\else $v_{\mathrm{out}}$~\fi}
+\newcommand{\tauh}{\ifmmode \tau_{\mathrm{H}}\else $\tau_{\mathrm{H}}$~\fi}
+\newcommand{\vth}{\ifmmode v_{\mathrm{th}}\else $v_{\mathrm{th}}$~\fi}
+\newcommand{\hatk}{\ifmmode \hat{k}\else $\hat{k}$~\fi}
+\newcommand{\STD}{\ifmmode \mathrm{STD}\else $\mathrm{STD}$~\fi}
+\newcommand{\SKW}{\ifmmode \mathrm{SKW}\else $\mathrm{SKW}$~\fi}
+\newcommand{\BI}{\ifmmode \mathrm{BI}\else $\mathrm{BI}$~\fi}
+
+\begin{document}
+
+%=========================================================================
+%		FRONT MATTER
+%=========================================================================
+\title[Supercluster characterization in cosmological simulations]{Supercluster characterization in cosmological simulations}  
+\author[D.L. Paipa-Leon \& J.E. Forero-Romero]{
+  David Leonardo  Paipa-Le\'on$^{1}$
+  \thanks{dl.paipa10@uniandes.edu.co} \&
+  Jaime E. Forero-Romero $^{1}$
+  \thanks{je.forero@uniandes.edu.co}\\
+  %%
+  $^{1}$ Departamento de F\'isica, Universidad de los Andes, Cra. 1
+  No. 18A-10 Edificio Ip, CP 111711, Bogot\'a, Colombia \\
+}
+%%%%%====MYMARK========
+\maketitle
+\begin{abstract}
+%Para referencia -------
+$10^5\leq\tauh\leq10^7$, rotational velocity $0\leq \vrot/\kms \leq
+100$ and outflow velocity $0\leq \vout/\kms\leq 50$.  
+
+line's center within a $7\%$ and $50\%$ precision for an optical depth of
+$\tauh=10^5$, respectively, and within $2\%$ and $1\%$ for an optical
+depth of $\tauh=10^7$.
+ $\frac{1}{2}\vrot$. 
+ framework to interpret \lya
+%------------------
+
+
+\end{abstract}
+
+\begin{keywords}
+%%PREGUNTAR
+galaxies:ISM --- line:profiles --- radiative transfer --- methods: numerical
+\end{keywords}
+
+
+%=========================================================================
+%		PAPER CONTENT
+%=========================================================================
+
+%*************************************************************************
+
+\section{Introduction}
+\label{sec:intro}
+
+Recent advances in instrumentation have revealed the presence of gas
+rotation on vastly different physical scales.
+\citep[e.g.][]{Herenz2016}.  
+
+
+
+
+Throughout the paper we use a thermal velocity for a neutral Hydrogen
+gas of \vth $= 12.86$ \kms, which corresponds to a temperature of
+$T=10^4$ K. 
+
+% \begin{figure*}
+% \centering
+%     \includegraphics[width=0.48\textwidth]{doppler_shift_logtau6_theta90}
+%     \includegraphics[width=0.48\textwidth]{doppler_shift_logtau6_theta0}
+%   \caption{\textbf{Qualitative trends of changing outflow and
+%       rotational velocity viewed perpendicular/paralell to the
+%       rotation axis}.  
+%     Here we fix $\tauh=10^6$. 
+%     The six panels on the left correspond to $\theta=90^\circ$ and the
+%     panels on the right to $\theta=0^{\circ}$
+%     We vary \vrot increasing from left to right and \vout increasing
+%     from top to bottom. 
+%     The thin black line corresponds to the \lya line obtained with
+%     CLARA without any rotation and the indicated outflow velocity.
+%     The thick black line corresponds to CLARA's results including both
+%     outflows and rotation.
+%     The thick gray line shows the results of modifying the pure outflow
+%     solution (thin black line) by the Doppler shift presented in Equation \ref{eq:shift_x} using the respective \vrot. 
+%     \label{fig:doppler_shift}}
+% \end{figure*}
+
+% \begin{figure*}
+% \begin{center}
+% \includegraphics[height=0.25\textwidth]{line_characterization_std_vout5_logtau5.pdf}
+% \includegraphics[height=0.25\textwidth]{line_characterization_std_vout25_logtau5.pdf}
+% \includegraphics[height=0.25\textwidth]{line_characterization_std_vout50_logtau5.pdf}\\
+% \includegraphics[height=0.25\textwidth]{line_characterization_std_vout5_logtau6.pdf}
+% \includegraphics[height=0.25\textwidth]{line_characterization_std_vout25_logtau6.pdf}
+% \includegraphics[height=0.25\textwidth]{line_characterization_std_vout50_logtau6.pdf}\\
+% \includegraphics[height=0.25\textwidth]{line_characterization_std_vout5_logtau7.pdf}
+% \includegraphics[height=0.25\textwidth]{line_characterization_std_vout25_logtau7.pdf}
+% \includegraphics[height=0.25\textwidth]{line_characterization_std_vout50_logtau7.pdf}
+% \end{center}
+% \caption{he
+%   \label{fig:standard_deviation}}
+% \end{figure*}
+
+% \begin{figure*}
+% \begin{center}
+% \includegraphics[height=0.25\textwidth]{line_characterization_skw_vout5_logtau5}
+% \includegraphics[height=0.25\textwidth]{line_characterization_skw_vout25_logtau5}
+% \includegraphics[height=0.25\textwidth]{line_characterization_skw_vout50_logtau5}\\
+% \includegraphics[height=0.25\textwidth]{line_characterization_skw_vout5_logtau6}
+% \includegraphics[height=0.25\textwidth]{line_characterization_skw_vout25_logtau6}
+% \includegraphics[height=0.25\textwidth]{line_characterization_skw_vout50_logtau6}\\
+% \includegraphics[height=0.25\textwidth]{line_characterization_skw_vout5_logtau7}
+% \includegraphics[height=0.25\textwidth]{line_characterization_skw_vout25_logtau7}
+% \includegraphics[height=0.25\textwidth]{line_characterization_skw_vout50_logtau7}
+% \end{center}
+% \caption{\textbf{Skewness trends.} Results for all the
+%   Radiative Transfer simulations (in triangles) compares against the
+%   Doppler Shift model (lines).
+%   Follows the same layout as Figure \ref{fig:standard_deviation}. 
+%   \label{fig:skewness}}
+% \end{figure*}
+
+% \begin{figure*}
+% \begin{center}
+% \includegraphics[height=0.25\textwidth]{line_characterization_bi_vout5_logtau5}
+% \includegraphics[height=0.25\textwidth]{line_characterization_bi_vout25_logtau5}
+% \includegraphics[height=0.25\textwidth]{line_characterization_bi_vout50_logtau5}\\
+% \includegraphics[height=0.25\textwidth]{line_characterization_bi_vout5_logtau6}
+% \includegraphics[height=0.25\textwidth]{line_characterization_bi_vout25_logtau6}
+% \includegraphics[height=0.25\textwidth]{line_characterization_bi_vout50_logtau6}\\
+% \includegraphics[height=0.25\textwidth]{line_characterization_bi_vout5_logtau7}
+% \includegraphics[height=0.25\textwidth]{line_characterization_bi_vout25_logtau7}
+% \includegraphics[height=0.25\textwidth]{line_characterization_bi_vout50_logtau7}
+% \end{center}
+% \caption{\textbf{Bimodality trends.} Results for all the
+%   Radiative Transfer simulations (in triangles) compares against the
+%   Doppler Shift model (lines). 
+%   Follows the same layout as Figure \ref{fig:standard_deviation}. 
+%   \label{fig:bimodality}}
+% \end{figure*}
+
+% \begin{figure*}
+% \begin{center}
+% \includegraphics[height=0.25\textwidth]{line_characterization_vi_vout5_vrot100_logtau5}
+% \includegraphics[height=0.25\textwidth]{line_characterization_vi_vout25_vrot100_logtau5}
+% \includegraphics[height=0.25\textwidth]{line_characterization_vi_vout50_vrot100_logtau5}\\
+% \includegraphics[height=0.25\textwidth]{line_characterization_vi_vout5_vrot100_logtau6}
+% \includegraphics[height=0.25\textwidth]{line_characterization_vi_vout25_vrot100_logtau6}
+% \includegraphics[height=0.25\textwidth]{line_characterization_vi_vout50_vrot100_logtau6}\\
+% \includegraphics[height=0.25\textwidth]{line_characterization_vi_vout5_vrot100_logtau7}
+% \includegraphics[height=0.25\textwidth]{line_characterization_vi_vout25_vrot100_logtau7}
+% \includegraphics[height=0.25\textwidth]{line_characterization_vi_vout50_vrot100_logtau7}
+% \end{center}
+% \caption{\textbf{Valley Intensity. } We show for each \tauh the dependency that
+%   the viewing angle $\theta$ has on the line's the
+%   valley intensity. $\vrot=100$\kms is fixed for all panels.
+% 		\label{fig:valley_intensity}}
+% \end{figure*}
+
+% \begin{figure}
+% \centering
+%     \includegraphics[width=0.48\textwidth]{doppler}
+%   \caption{\textbf{Spectra from receding/approaching sides of a toy
+%       model LAE.}  These results correspond to the RT simulation with
+%     $\vout=25$\kms, $\vrot=50$\kms, $\tauh=10^5$. 
+%     The spectra were computed for a viewing angle of
+%     $\theta=90^{\circ}$. This toy model illustrates to what extent spectra from
+%     opposite sides of a galaxy have an imprint of the rotational
+%     kinematics. 
+%     \label{fig:doppler}}
+% \end{figure}
+
+
+\section{Theoretical Models}
+\label{sec:theory}
+
+
+
+\begin{equation}
+	v_{x}=\frac{x}{R}\vout - \frac{y}{R}\vrot ,
+	\label{eq:vx}
+\end{equation}
+
+\begin{equation}
+	v_{y}=\frac{y}{R}\vout + \frac{x}{R}\vrot ,
+	\label{eq:vy}
+\end{equation}
+
+\begin{equation}
+	v_{z}=\frac{z}{R}\vout,
+	\label{eq:vz}
+\end{equation}
+%
+
+\subsection{Quantitative Trends}
+\label{sec:quantitative}
+
+
+\begin{equation}
+\label{eq:std}
+\STD = \sqrt{m_2},
+\end{equation}
+
+\begin{equation}
+\label{eq:skw}
+\SKW = \frac{m_3}{m_2^{3/2}},
+\end{equation}
+
+\begin{equation}
+\label{eq:bi}
+\BI = \mathrm{KURTOSIS} - \SKW^2 = \frac{m_4}{m_2^{2}} - \frac{m_3^2}{m_2^{3}},
+\end{equation}
+%
+
+
+In the range of parameter space explore, this difference has as an
+upper bound of $\sim 7\%$, $3\%$ and $\sim 2\%$ for
+ $\tauh=10^5$, $10^6$ and $10^7$, respectively. 
+
+
+
+\section{Discussion}
+\label{sec:discussion}
+.
+
+\subsection{\lya Kinematic Maps}
+\label{subsec:kinematic}
+
+($\approx 80$kpc) LAE.
+In more recent work
+receding/approaching spectra is close to $\sim 25\ \kms$, which is
+a fourth of the naively expected value of $2\vrot=100\ \kms$,
+due to the fact that only a small fraction of the photons are emitted
+at the extreme of the galaxy having the maximum rotational velocity of
+$50\ \kms$. 
+
+
+
+\section{Conclusions}
+\label{sec:conclusions}
+
+
+
+\bibliographystyle{mnras}
+\bibliography{references}
+
+
+
+\appendix
+
+\section{Additional figures}
+\label{sec:appendix}
+
+\begin{figure*}
+  \begin{center}
+    \includegraphics[width=0.49\textwidth]{doppler_shift_logtau5_theta90}
+    \includegraphics[width=0.49\textwidth]{doppler_shift_logtau7_theta90}
+  \end{center}
+  \caption{\textbf{Qualitative trends of changing outflow and
+      rotational velocity.}
+    Same layout as Figure \ref{fig:doppler_shift}. On the left:
+    $\tauh=10^5$ and $\theta=90^\circ$; on the right:     this time  $\tauh=10^7$ and $\theta=90^\circ$.}
+\end{figure*}
+
+\end{document}
