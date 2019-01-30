@@ -71,195 +71,447 @@ galaxies:ISM --- line:profiles --- radiative transfer --- methods: numerical
 
 \section{Introduction}
 \label{sec:intro}
-
-Recent advances in instrumentation have revealed the presence of gas
-rotation on vastly different physical scales.
-\citep[e.g.][]{Herenz2016}.  
+The Universe is infinite. It contains our home planet, our solar system, our galaxy and our nearest neighbor galaxy. All the people, all the molecules, all the information, all the animals and all the quasars. It contains all the stars that were once born and will be born, everything we can ever hope to understand and more. Much more.
+As spectators, all we can do is observe the sky and try to find out everything we can about everything that exists beyond our atmosphere. This seems to be enough to know our cosmic neighborhood and even be able to make proposals about the creation of the universe itself, all contemplated within the vast field of cosmology. But studies in modern cosmology try to answer questions that far exceed our experimental limits. To answer questions of this nature it would be necessary to observe the universe all at the same time, in order to experience its temporal evolution and to be able to observe in detail each variation that the system undergoes. This is impossible in any context.\\
 
 
+Fortunately, we are already in the information age.\\
 
 
-Throughout the paper we use a thermal velocity for a neutral Hydrogen
-gas of \vth $= 12.86$ \kms, which corresponds to a temperature of
-$T=10^4$ K. 
+Currently, we are able to simulate \emph{Toy} universes in super computers with the general conditions that we believe the universe has. These simulations help us to have a complete hypothesis of what the rest of the universe is like. So far, the conditions achieved in simulations such as Illustris\cite{IllustrisHome} or Millenium\cite{MilleniumHome} are sufficiently similar to those observed in large catalogs of galaxies. Such  powerful tools would be useless if they were not used to answer a few questions, among which there are some that are priorities. Important questions are, for example, how typical is our solar system? How typical is the Milky Way among the other galaxies?
+With the theoretical and instrumental development of astronomy we have already answered some questions of this nature: we are not the center of the solar system, our sun is not the largest or the only one there is, we are not the center of the galaxy nor are we in the biggest galaxy. But as the scale of the question rises, so does the cost of answering it. When we begin to wonder why the galaxies are grouped and how they do it, the peculiarity of our local group of galaxies is instantly put into discussion. Just a few years ago it was possible to define Laniakea, the local galactic supercluster, by studying in detail the speeds of thousands of known galaxies\cite{NatureTully}. This provide us a point of reference in order to analyze the results of various simulations and thus answer a few more questions about our status in the vast universe.
 
-% \begin{figure*}
-% \centering
-%     \includegraphics[width=0.48\textwidth]{doppler_shift_logtau6_theta90}
-%     \includegraphics[width=0.48\textwidth]{doppler_shift_logtau6_theta0}
-%   \caption{\textbf{Qualitative trends of changing outflow and
-%       rotational velocity viewed perpendicular/paralell to the
-%       rotation axis}.  
-%     Here we fix $\tauh=10^6$. 
-%     The six panels on the left correspond to $\theta=90^\circ$ and the
-%     panels on the right to $\theta=0^{\circ}$
-%     We vary \vrot increasing from left to right and \vout increasing
-%     from top to bottom. 
-%     The thin black line corresponds to the \lya line obtained with
-%     CLARA without any rotation and the indicated outflow velocity.
-%     The thick black line corresponds to CLARA's results including both
-%     outflows and rotation.
-%     The thick gray line shows the results of modifying the pure outflow
-%     solution (thin black line) by the Doppler shift presented in Equation \ref{eq:shift_x} using the respective \vrot. 
-%     \label{fig:doppler_shift}}
-% \end{figure*}
+The main objective of this work is to characterize the superclusters of galaxies that are formed in cosmological simulations without leaving aside what has to do with determining the significance of Laniakea in an objective cosmological context.
 
-% \begin{figure*}
-% \begin{center}
-% \includegraphics[height=0.25\textwidth]{line_characterization_std_vout5_logtau5.pdf}
-% \includegraphics[height=0.25\textwidth]{line_characterization_std_vout25_logtau5.pdf}
-% \includegraphics[height=0.25\textwidth]{line_characterization_std_vout50_logtau5.pdf}\\
-% \includegraphics[height=0.25\textwidth]{line_characterization_std_vout5_logtau6.pdf}
-% \includegraphics[height=0.25\textwidth]{line_characterization_std_vout25_logtau6.pdf}
-% \includegraphics[height=0.25\textwidth]{line_characterization_std_vout50_logtau6.pdf}\\
-% \includegraphics[height=0.25\textwidth]{line_characterization_std_vout5_logtau7.pdf}
-% \includegraphics[height=0.25\textwidth]{line_characterization_std_vout25_logtau7.pdf}
-% \includegraphics[height=0.25\textwidth]{line_characterization_std_vout50_logtau7.pdf}
-% \end{center}
-% \caption{he
-%   \label{fig:standard_deviation}}
-% \end{figure*}
 
-% \begin{figure*}
-% \begin{center}
-% \includegraphics[height=0.25\textwidth]{line_characterization_skw_vout5_logtau5}
-% \includegraphics[height=0.25\textwidth]{line_characterization_skw_vout25_logtau5}
-% \includegraphics[height=0.25\textwidth]{line_characterization_skw_vout50_logtau5}\\
-% \includegraphics[height=0.25\textwidth]{line_characterization_skw_vout5_logtau6}
-% \includegraphics[height=0.25\textwidth]{line_characterization_skw_vout25_logtau6}
-% \includegraphics[height=0.25\textwidth]{line_characterization_skw_vout50_logtau6}\\
-% \includegraphics[height=0.25\textwidth]{line_characterization_skw_vout5_logtau7}
-% \includegraphics[height=0.25\textwidth]{line_characterization_skw_vout25_logtau7}
-% \includegraphics[height=0.25\textwidth]{line_characterization_skw_vout50_logtau7}
-% \end{center}
-% \caption{\textbf{Skewness trends.} Results for all the
-%   Radiative Transfer simulations (in triangles) compares against the
-%   Doppler Shift model (lines).
-%   Follows the same layout as Figure \ref{fig:standard_deviation}. 
-%   \label{fig:skewness}}
-% \end{figure*}
+\subsection{Observational Context}
+In 1932 Harlow Shapley and Adelaide Ames published a catalog of nearby galaxies and their respective distributions in space \cite{catalogoRevisado}.  This work revealed clusters of galaxies on a large scale structure similar to a filament web. Until then there was knowledge of galaxies grouped in small groups, called clusters, but the observations suggested that these formed part of structures composed of several of these clusters. Almost a century later, observers managed to define the local supercluster within which the Milky Way is included \cite{tully_laniakea_2014}. 
+This supercluster is defined as a network of structures (formed by galaxies) that have convergent velocities towards a large attractor, shown in Figure \ref{fig:Laniakea}. This supercluster is called Laniakea. It has a mass of about $10^{17}$ Solar masses ($M_{\odot}$) and its semimajor axis has an approximate length of 160 Mpc \cite{NatureTully}.
 
-% \begin{figure*}
-% \begin{center}
-% \includegraphics[height=0.25\textwidth]{line_characterization_bi_vout5_logtau5}
-% \includegraphics[height=0.25\textwidth]{line_characterization_bi_vout25_logtau5}
-% \includegraphics[height=0.25\textwidth]{line_characterization_bi_vout50_logtau5}\\
-% \includegraphics[height=0.25\textwidth]{line_characterization_bi_vout5_logtau6}
-% \includegraphics[height=0.25\textwidth]{line_characterization_bi_vout25_logtau6}
-% \includegraphics[height=0.25\textwidth]{line_characterization_bi_vout50_logtau6}\\
-% \includegraphics[height=0.25\textwidth]{line_characterization_bi_vout5_logtau7}
-% \includegraphics[height=0.25\textwidth]{line_characterization_bi_vout25_logtau7}
-% \includegraphics[height=0.25\textwidth]{line_characterization_bi_vout50_logtau7}
-% \end{center}
-% \caption{\textbf{Bimodality trends.} Results for all the
-%   Radiative Transfer simulations (in triangles) compares against the
-%   Doppler Shift model (lines). 
-%   Follows the same layout as Figure \ref{fig:standard_deviation}. 
-%   \label{fig:bimodality}}
-% \end{figure*}
+Although modern astronomy has advanced considerably in the study of galaxy clusters \cite{TheDeepUniverse}, much is still unknown about the statistical properties of these superclusters. To get some answers in this topic it is necessary to use cosmological simulations.
 
-% \begin{figure*}
-% \begin{center}
-% \includegraphics[height=0.25\textwidth]{line_characterization_vi_vout5_vrot100_logtau5}
-% \includegraphics[height=0.25\textwidth]{line_characterization_vi_vout25_vrot100_logtau5}
-% \includegraphics[height=0.25\textwidth]{line_characterization_vi_vout50_vrot100_logtau5}\\
-% \includegraphics[height=0.25\textwidth]{line_characterization_vi_vout5_vrot100_logtau6}
-% \includegraphics[height=0.25\textwidth]{line_characterization_vi_vout25_vrot100_logtau6}
-% \includegraphics[height=0.25\textwidth]{line_characterization_vi_vout50_vrot100_logtau6}\\
-% \includegraphics[height=0.25\textwidth]{line_characterization_vi_vout5_vrot100_logtau7}
-% \includegraphics[height=0.25\textwidth]{line_characterization_vi_vout25_vrot100_logtau7}
-% \includegraphics[height=0.25\textwidth]{line_characterization_vi_vout50_vrot100_logtau7}
-% \end{center}
-% \caption{\textbf{Valley Intensity. } We show for each \tauh the dependency that
-%   the viewing angle $\theta$ has on the line's the
-%   valley intensity. $\vrot=100$\kms is fixed for all panels.
-% 		\label{fig:valley_intensity}}
-% \end{figure*}
+\subsection{Cosmological simulations}
+Obtaining direct experimental results in the study of cosmology is very complicated since they require observation times of billions of years and involve distances that light would take thousands of centuries to travel. Computational simulations in cosmology are powerful tools that allow us to study a great variety of events, from collisions of galaxies to the temporal evolution of  universes with different properties. All this thanks to algorithms that implement numerical solutions to physical theoretical models, such as particle phyics, hydrodynamics, N-body systems and astrophysics.
+
+Although different cosmologies can be simulated today on a large scale, most of the simulations that have been done use the standard cosmological model, or $\Lambda$-CDM model, which will be discussed more fully in section \ref{sec:units}.
+Usually these simulations have as initial conditions a homogeneous space with particles of random mass with a certain distribution, and their evolution is dictated by gravitational interactions. Since mergers are usually allowed, it is expected that by the time of evolution of the system there will be compact objects that tend to form a large-scale structure, as you can see in Figure \ref{fig:illustris}. These compact objects can be stars, galaxies, haloes of dark matter or agglomerations of these.
+
+
+
+
+\section{Methods}
+
+We describe below the methods to segregate superclusters in simulations.
+
+\subsection{Grid Construction}
+
+
+The cubic space of the simulation is segmented into a cubic grid. Each side of the box is divided into $N_{side}$ steps, dividing the three-dimensional space into $N_{side}^3$ equal voxels\footnote{In 2D dividing a surface in a grid with \texttt{n} steps  per dimension make $n^2$ squares of equal dimensions called \textbf{pixels}. In the 3D case, dividing a volume with \texttt{n} steps per dimension lead to the construction  of $n^3$ cubic Voxels. }. This in order to have a differentiable field that has already been quantized on a defined spatial scale, such as observational data.
+ 
+\subsubsection{Velocity Grids}
+\label{sec:INTROVgrid}
+For each voxel we compute the \texttt{Center of Mass velocity}  
+
+\begin{equation}
+V_{CM_j}=\frac{\sum\limits_{i=1}^n m_i \textbf{v}_{i_j}}{\sum\limits_{i=1}^n m_i} \,,
+\label{eq:CMcalc}
+\end{equation}
+
+Where \texttt{j} is the axis of interest, $m_i$ is the mass of the \textit{i-th} halo with speed $\textbf{v}_{i_j}$ along the axis \textt{j}. Once this is done, the result is a Three-Dimensional cubic Lattice with $N_{side}^3$ real numbers for each component of velocity. In 3 Dimensions, $V_x$, $V_y$, $V_z$ are grids of size [$N_{side} \times N_{side} \times N_{side}$] containing scalar numbers expressing the velocity component along the respective axis.
+
+The number of steps $N_{side}$ is established from the beginning.
+
+
+
+\subsubsection{Mass Grid}
+\label{sec:INTROMgrid}
+In the initial conditions, each voxel has a bound mass corresponding to the total mass of the Halos inside the voxel. Let \texttt{M} be the \textbf{}{Mass grid} with side $N_{side}$ such that:
+\begin{equation}
+    M_{ijk}=\sum\limits_{n=1}^{\alpha} m_n 
+\end{equation}
+
+Where \textt{i}, \textt{j}, \textt{k} are the coordinates in the 3D grid of a given Voxel and $\alpha$ is the number of Halos contained in the volume described by the Voxel. 
+
+
+\subsection{Gaussian Convolution}
+\label{sec:INTROGCOnv}
+
+
+To further highlight the group characteristics and to maintain an adequate theoretical framework, the mass and the velocity field on each axis is smoothed with a three-dimensional Gaussian convolution. For this Gaussian convolution process it is necessary to determine a $\sigma_{vox}$ given in voxels that determines the width of the 3D Gaussian curve. The larger the $\sigma_{vox}$ , the wider the curve and the interpolation loses detail. This $\sigma_{vox}$ can be set different for each axis but as there is not a peculiar direction or axis, it may be set equal for all three axis. This Gaussian filter which convolves with each three-dimensional array for velocities has the form:
+
+\begin{equation}
+    I_{i',j',k'}=\frac{1}{\sigma_{vox}^3 (2\pi)^{3/2}} \exp{ \left[ \frac{(i'-i_o)^2+(j'-j_o)^2+(k'-k_o)^2}{\sigma_{vox}^2}\right]}
+\end{equation}
+
+Where $I_{i,j,k}$ is the intensity of the Gaussian filter in the reciprocal lattice coordinates \texttt{i', j', k'}. In this case $i_o$, $j_o$, $k_o$ are the coordinates of the peak of the Gaussian filter.
+ 
+
+
+
+
+
+\subsection{Velocity Divergence Coeficient (VDC)}
+\label{sec:INTROVDC}
+Supercluster identification studies Halo group velocities. Sometimes the convergence of speed in a local group of voxels can be seen at first sight as a group of speeds that point to a common center, but in a large part of the cases it is not so easy to show the formation of a supercluster . This is because in many cases a local group converges to a center whose own speed is different from zero and to the naked eye this group moves in a single direction without converging.
+
+To determine which voxels are converging or diverging from certain centers, it is necessary to quantify the accretion for each unit of volume. This accretion is interpreted as the volumetric flow of velocity vectors for each voxel, in such a way that a scalar is assigned to each point of the three-dimensional grid.
+%\subsubsection{VDC Grid}
+The velocity divergence is calculated over a grid uisng the voxels as discrete units of volume.
+
+
+\subsection{Watershed algorithm}
+\label{sec:INTROWatershed}
+ There are many problems in science associated with systems difficult to quantify geometrically, either because it is a continuous medium with indefinite limits or because it deals with volumes that are difficult to solve analytically due to their complexity. In the case of superclusters of galaxies, we are talking about volumes that are in a wide range distribution and of great complexity in terms of shape. 
+
+ When you look at an image generated by a large-scale simulation of the universe, it is easy to identify points where matter is being concentrated. Recognize the structure present in one of these images at a glance is a task that can be easily approached by eye, but in science that is not enough.
+To segment the divergence grid into regiones of converging halo flows we use the \textbf{Watershed Algorithm}.
+As defined by several sources \cite{DelaunayTessellations_Schaap} \cite{BeucherSegmetation}, the watershed algorithm is a method of segmenting images by regions or objects based on the mathematical morphology of the field to be analyzed. It was mentioned and used for the first time by Beucher and Lantuejeul\cite{BeucherWatershed1979} in 1979 in order to analyze images with objects whose limits were not defined.
+
+The method is called \texttt{watershed} since it compares the field with a landscape\footnote{We speak of a landscape in the case of a scalar map in 2 dimensions, where at each point of a plane corresponds a scalar that would correspond analogously to the height in that position. However it should be mentioned that this analysis can be done in one or more dimensions.} that is flooded by rain, as explained by Platen et al.(2007)\cite{CosmicWatershedVoidDetection}, where the water begins to concentrate in the local minima, or valleys, and the puddles begin to grow from these initial concentrations filling their local well. If each puddle were filled with paint of a different color and the field was completely flooded, there would be borders between puddles as lines that define the border between different puddles. In a more practical sense, it would be possible to differentiate valleys by assigning to each point of the plane the color of the valley to which it belongs. Continuing in the analogy of the landscape, it would be expected that these borders that are formed between colors appear in the peaks of the mountains since they would be the last points of the map that would be flooded.
+
+This analysis is equivalent to making a sweep from the lowest values of the scalar field to the highest,or viceversa, assigning to the lowest isolated points (or origins) an indicator that will propagate with the shape of the scalar field as the sweep reaches higher values. These indicators that will be assigned to each point of the field are called \textbf{group identifiers} and are assigned following certain rules according to specific cases.
+Using watershed to segregate bodies has many benefits that can be noticed without much effort, some mentioned by Platen et al. (2007) \cite{CosmicWatershedVoidDetection}.
+\begin{itemize}
+\item The algorithm works independently of the shape of the field and the perturbations that will be classified. Superclusters are expected to have a barely defined shape and a totally random volume, so using Watershed is a valid proposal.
+\item Since the selection rules can be adjusted at will, it is easy to include in the algorithm periodic boundary conditions, which were used in the simulation. This will prevent those groups that are crossing one of the faces of the simulation box from being partially recognized or divided.
+\item The method is designed to sweep the entire field, independent of its dimensionality. At the end of its execution every voxel in the space of the simulation would have assigned a group identifier. The field will be divided into different compact regions with defined borders and volumes.
+\item The nature of the algorithm makes it more sensitive to field variations near the boundaries of each group. This is because at the borders the gradient of the field is weaker and any minimum fluctuation is relevant. Although the borders of the groups can not be clearly defined, the algorithm defines the borders of these diffuse objects very well.
+\end{itemize}
+
+\subsubsection{Selection rules and Parameter definition}
+When talking about using this method, the selction rules that determine the identifiers of each voxel must be discussed. This problem is reduced to defining a selection criterion that is made from voxel to voxel while the sweeping by levels of watershed is carried out. 
+
+To do this, the same neighborhood rule as in section \ref{sec:INTROVDC} will be used to assign the group identifier. We are talking about  a 6-connectivity, that means that only the 6 immediate neighbors of each voxel will be reviewed to establish the selection criteria when the watershed sweep passes through it. The cosniderations to use the method in this case are the following:
+\begin{itemize}
+    \item Once the VDC grid $\Phi$ has been calculated its minimum  and maximum value must be found\footnote{It is expected that the minimum value is a negative coefficient and the maximum value is a positive one, both of the same order of magnitude. This is easy to see in the VDC distributions shown in Figure \ref{fig:VCD_Varios}.}. These values are points of reference for doing the sweep in VDC values inside the grid. If you want to find the regions that correspond to structure formation , you will carry out the sweep from the highest values of VDC to the lowest ones. If what is desired is to find voids then the sweep should be made from the lowest values to the highest ones.
+    
+    \item Suppose that the sweep is first encountered with a voxel with coordinates \texttt{[i,j,k]} inside the grid and that has its corresponding value in the axial speed grids $V_{xyz}$, the mass grid \texttt{M} and , obviously, the VDC grid $\Phi$. In this point we must define a new variable called the \textbf{Tolerance Threshold Radius} $R_T$\footnote{This quantity is defined for the rest of the analysis. $R_T$ is the same for every instance of the watershed sweep.} for origins\footnote{the voxels classified as \textbf{Origin} are those that are the first to assume their identifier. They are those voxels from which the different regions propagate thanks to the method itself.}.  It is a discrete quantity that expresses the minimum number of voxels that must exist between two different origins. That is, if there is already an origin in a distance less than $R_T$ the current voxel can \textbf{NOT} be classified as an origin. Since the first peaks are within unclassified regions, most of these are classified as new origins. This measure is taken in order to prevent over-saturation of origins and poor classification of groups due to this problem.
+    
+    \item Now suppose that the sweep reaches another voxel with coordinates \texttt{[i,j,k]} inside the grid. This time the voxel is not isolated, but it is neighbor of a \texttt{single} voxel already classified. in that case the voxel assumes the identifier of its classified neighbor. If when the voxel is reached it has \texttt{more than one} classified neighbor, among these options the voxel assumes the identifier of the closest source. This allows that if the sweep is done properly, the region expands according to the shape of the scalar field. In addition, if the algorithm is in a dilemma to decide which identifier to assume for the current voxel, the nearest source can be selected because it is the accretion nucleus most likely to be linked to the voxel.
+    \item The sweep is usually a narrow range that shifts between the two extreme values of VDC and all voxels with a VDC in this range range are evaluated. Unfortunately, the thinner this range is, the more computing time is required as more iterations are necessary to complete the sweep. This is why, although the range used is as narrow as possible, sometimes it is thick enough to evaluate more pixels of the account. Suppose that the voxel being evaluated is close enough to another origin and can not be classified as a new origin, but it does not have any classified neighbor either. In these cases the algorithm leaves this space unclassified.
+    \item By the end of the sweep, many voxels in the grid will already have an identifier assigned. But it is not the case of all voxels; There are some voxels that the algorithm could not reach and therefore, they remained unclassified. One solution is to do the sweep again, this time a little thinner, in order to have a more sensitive evaluation interval for small VDC variations. However, this seems to just keep leaving some areas unclassified. This is why a lower weight variable called the \textbf{Qualification Threshold} ($Q_T$) is introduced. Represents the number of unsorted voxels that can be left in order to move to the \texttt{Final Assignment Stage}. This threshold is simply an indicator of when the method should stop doing watershed sweeps.
+    \item \textbf{Final Assignment Stage .} When the number of unclassified voxels is equal to or less than $Q_T$, we proceed with a more robust classification. As mentioned before, it is valid to assume that in case of uncertainty about the identifier of a voxel, the logical thing to do is assign it the identifier of its closest source. This decision is also based on results obtained by Platen et al. (2007)\cite{CosmicWatershedVoidDetection} when it points out the similarity between the clusters obtained by the watershed method applied to velocities and those obtained by the Voronoi distance method. This selection by distance is carried out on the unclassified voxels. In this way, at the end of this step, all the voxels in the grid would have an assigned identifier.
+\end{itemize}
+Having said that, a good start is to define the parameters mentioned.
+
+In order to choose an $R_T$ one should take into account the smoothing of the field. If the field was smoothed with a very small $\sigma_{Vox}$, a very large $R_T$ would be absurd since it would be assumed that the superclusters have diameters of the order of $R_T$. Assuming this is dangerous since by smoothing the field with a small $\sigma_{Vox}$ it was established that the smallest possible perturbations have diameters similar to $2 \sigma_{Vox}$. This would lead to a failure in the method so catastrophic that the established protocol would leave unsorted many voxels. It would be necessary to establish a very large $Q_T$ in order to be able to assign an identifier to each voxel. Doing this would make the segregation of groups more similar to the construction of a Voronoi map.
+
+On the other hand, if the $\sigma_{Vox}$ is very large compared to $R_T$, then any sufficiently strong perturbation near a local accretion nucleus would be taken as a new origin. This leads to \texttt{over-saturation} of identifiers where the algorithm defines so many new groups that it results in an absurdity.
+
+To avoid either of the two cases, it is sensible to evaluate what possibilities are available to choose $R_T$. Since defining $\sigma_{Vox}$  is establishing the \textit{minimum radius} that can have any disturbance in the VDC grid and assuming that all disturbances have said radius, the minimum possible distance between two accretion nuclei would be $2 \sigma_{Vox}$. That is why for the development of future methods that is the $R_T$ that will be chosen\footnote{ The  value asigned for $ \sigma_{Vox}$ is of 1 voxel for further analysis, then $R_T$ should be 2 voxels.}.
+\begin{equation}
+    R_T = \text{2 } \sigma_{Vox}
+\end{equation}
+Now, to choose $Q_T$ one must quantify the computational capacity that is possessed and the amount of uncertainty that is desired. Remember that the smaller $Q_T$ is, the more watershed sweeps must be done to assign indicators to sufficient voxels and reach the threshold. But if $Q_T$ is very large, the level of uncertainty increases since there would be a large percentage of voxel assigned by distance criterion and not by the watershed method. It is advisable to explore by trial and error the value of $Q_T$ and select one that meets the desired computational and uncertainty requirements. Since the voronoi method has a high degree of similarity with watershed, the relevance in terms of error of assigning a few voxels by distnance method is very low. For this particular case, a $Q_T$ according to the needs of this work is selected.
+
+\begin{equation}
+    Q_T = \text{200 Vox}
+\end{equation}
+Once the parameters to implement the watershed method have been defined, it is only necessary to use it on the appropriate VDC grid.In Section \ref{sec:Sigmainfluence} the influence of $\sigma_{Vox}$ on the characteristics of the superclusters found will be discussed in detail. On the other hand, Section \ref{sec:superclusterRecons} continues with the study of the case of a chosen  $\sigma_{Vox}$ having already applied the watershed algorithm in the respective VDC grid $\Phi$.
+
+\subsubsection{Supercluster recosntruction}
+\label{sec:superclusterRecons}
+The best question that can be asked now is: \textit{what is the  $\sigma_{Vox}$ for making a reasonable comparison with the observational data?}
+
+Notice that regardless of which $\sigma_{Vox}$ is suitable for future analysis, the other $\sigma_{Vox}$ also contain relevant information on large-scale structure formation. Using a different Gaussian smoothing does \texttt{NOT} skew or delete the original information, but it does give new information about the organization of the field at different scales. The right $\sigma_{Vox}$ is chosen according to how similar are the conditions of the superclusters found in the simulation and those that cosmologists and astronomers have observed in our galactic neighborhood. The first candidate is postulated inspired by the work of Tully et al.\cite{tully_laniakea_2014} and Platen et al. \cite{CosmicWatershedVoidDetection}. Both works coincide in that when looking for cosmological structures, such as superclusters or voids, it is sensible to do it for structures with diameters between 10 Mpc $h^{-1}$ and 100 Mpc $h^{-1}$ \footnote{These values are estimations that are proposed in this work. Platen looks for voids with proposed diameters between 20 Mpc $h^{-1}$ and 50 Mpc $h^{-1}$ , while Tully in his work on Laniakea calculates a semimajor axis for the local supercluster of 160 Mpc $h^{-1}$ .}. Defining a  $\sigma_{Vox}$ is indirectly defining the minimum radius that a disturbance of the scalar field can have. Given the above, for the rest of the characterization and comparison work this specific $\sigma_{Vox}$ will be used:
+\begin{equation}
+     \sigma_{Vox} = \text{1 Vox} = \text{10 Mpc }h^{-1}
+\end{equation}
+
+
+
+
+
+\subsection{Inertia and Geometric Properties}
+\label{sec:IN}
+For each supercluster we compute the following properties.
+\paragraph{Center of Mass .} 
+The positions of the centers of the voxels and the mass associated with each of them are known. We compute the center of mass as 
+\begin{equation}
+    CM_k = \frac{\sum\limits^{n}_{\text{j=1}} m_j k_j}{\sum\limits^{n}_{\text{j=1}} m_j} \,,
+\end{equation}
+where $CM_k$ is the coordinate of the CM along the \emph{k-th} axis of the simulation, $m_j$ is the mass of the voxel $j$ and $k_j$ is the \emph{k-th} coordinate of the voxel $j$. 
+
+
+\paragraph{Intertia Tensor .}
+Having the positions and magnitudes of the individual masses in a system also facilitates the calculation of the Inertia Tensor. This is no more than a mathematical representation that has information of moments of inertia associated with a rigid body. This second-rank tensor \textbf{I} is calculated from the moments of inertia associated with each coordinate axis and the inertia products. Note that  the distances $x_j$, $y_j$, $z_j$ are relative to the coordinates of the center of mass.
+
+\[
+  I=
+  \left[ {\begin{array}{ccc}
+   \sum\limits^{n}_{\text{j=1}} m_j (y_j^2 + z_j^2) & -\sum\limits^{n}_{\text{j=1}} m_j x_j y_j & -\sum\limits^{n}_{\text{j=1}} m_j x_j z_j  \\
+   -\sum\limits^{n}_{\text{j=1}} m_j x_j y_j & \sum\limits^{n}_{\text{j=1}} m_j (x_j^2 + z_j^2) & -\sum\limits^{n}_{\text{j=1}} m_j y_j z_j  \\
+   -\sum\limits^{n}_{\text{j=1}} m_j x_j z_j & -\sum\limits^{n}_{\text{j=1}} m_j y_j z_j & \sum\limits^{n}_{\text{j=1}} m_j (x_j^2 + y_j^2)  \\
+  \end{array} } \right]
+\]
+
+
+
+\paragraph{Intertia Moment and Principal Axes of Rotation. }
+The Inertia tensor contains information about the rotation properties of a rigid body, including the proper directions of rotation of the object and the moments of inertia associated with these axes. Speaking of the tensor \textbf{I} as a linear element, its eigenvectors and eigenvalues correspond to the directions of the main axes of rotation relative to the center of mass $\Vec{d}_k$ in the simulation coordinate sistem and to the associated moment of inertia $\lambda_k$, respectively.
+Obtaining the value of the three $\lambda_a$, $\lambda_b$ and $\lambda_c$ that the tensor \textbf{I} has makes it possible to draw conclusions about the shape of the rigid object in question. For example, if the moments of inertia with respect to each principal axis are equal, then it is a sphere. This can be inferred from the fact that the object does not have a preferential axis of rotation.
+% This scalar $\Phi$ is called the \textbf{Velocity Divergence Coeficient} and, in this context,   quantifies the accretion in the grid.
+
+\subsection{Simulation data}
+\label{sec:SIMDATA}
+It is necessary to clarify that at no point the advance in time of the simulation is taken into account. The data used are static states of the simulation having already passed a sufficient time for gravity to have evolved the system .
+The simulation analyzed\cite{SimData} in this case has the characteristics shown in the Table \ref{tab:InitCondInfo}. The border condition used is periodic, this means that, during the simulation, all the matter that comes out through a wall of the simulation cube of side 1200 Mpc $h^{-1}$  enters through the opposite wall.
+
+
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|c|c|}
+    \hline
+    
+        \textbf{Side length} & 1200 Mpc $h^{-1}$ \\
+        \textbf{Total Volume} & 1.73 x $10^9$ Mpc  $h^{-3}$\\
+        \textbf{\# Halos} &  3 x $10^6$ Halos (Aprox.)\\
+        \textbf{Smallest Halo Mass} & 1.84 x $10^{10} M_{\odot} h^{-1} $\\
+        \textbf{Hubble} & 0.678\\
+        $\Omega_L$ & 0.692885 \\
+        $\Omega_o$ & 0.307115\\
+        $\Omega_b$ & 0.221610\\
+        
+        
+    \hline
+    \end{tabular}
+    \caption{Data extracted from the simulation data header. $\Omega_L$ corresponds to the Density of Dark Energy, $\Omega_b$ to the density of baryions and $\Omega_o$ to the density of Matter. Refer to Sections \ref{sec:units} and \ref{sec:initanalysis} for more information.}
+    \label{tab:InitCondInfo}
+\end{table}
+
+\subsection{Cosmological Model and Measurement Units}
+\label{sec:units}
+In order to properly interpret the information in table \ref{tab:InitCondInfo} and to continue with future studies, it is necessary to define the frame of reference that will dictate the logic and metrics of the N-body simulation. The frame used in this case is the current Standard Cosmological Model which is known as \textbf{$\Lambda$-Cold Dark Matter Model}, or \textbf{$\Lambda$-CDM model}. 
+
+The $\Lambda$-CDM model is that which we assume as true for physics at cosmological scales. It imposes Einstein's theory of relativity as the one that determines the dynamics and gravitational interactions on this scale. This model proposes an energy that explains the expansion of the universe that Hubble documented in 1936 \cite{Hubble}. This energy is associated with the cosmological constant \textbf{$\Lambda$} described by Einstein in the theory of General Relativity (hence its mention in the name of the model) and is believed that is present throughout the space. This energy is called \textbf{Dark energy} and to this day it is a complete mystery for science.
+
+The expansion of the universe, according to modern cosmology, depends on a scale factor \textbf{a(t)} that is not constant in time, which indicates that the expansion is accelerated. Based on this scale factor, the \textbf{Hubble parameter (H)} is defined, which dictates how fast a certain amount of space is expanded and, therefore, the speed at which two distant points move away.
+\begin{equation}
+    H = \frac{\dot{a}}{a}
+\end{equation}
+When we talk about the Hubble parameter for objects that are located in our galactic neighborhood, we find that it is a constant, defined as the Hubble constant \textbf{$H_o$}.
+\begin{equation}
+    H_o = \text{100 h km }s^{-1}  Mpc^{-1} = 67 \pm 7\text{ km } s^{-1}Mpc^{-1}
+\end{equation}
+Where \texttt{Mpc} corresponds to the unit of length measurement \emph{Megaparsec}\footnote{1 Mpc = $10^6$ pc = 3.087\text{ x }$10^{22}$ m.}. \texttt{h} is an adimensional constant defined with the Hubble constant.
+\begin{equation}
+    h \simeq 0.67
+\end{equation}
+Based on this, the simulation metric is defined. Note that the distances of the simulation come in terms of Mpc  $h^{-1}$ and not Mpc and, since the rest of the work will be done in units of Mpc $h^{-1}$, it is necessary to define the parameter \texttt{h} for the simulation, shown in table \ref{tab:InitCondInfo}.
+
+\textbf{Remember} that Tully defined the length of the semimajor axis and the mass for Laniakea in units of Mpc and $M_{\odot}$, respectively\cite{tully_laniakea_2014}. However, in order to make comparisons, these measurements must be renormalized on this parameter \texttt{h} and thus be defined in the framework of the simulation.
+
+The part of the title that talks about \emph{Cold Dark Matter} has two important concepts to deal with. The first is \textbf{Dark Matter}, which refers to an hypothetic unknown type of matter that arises conceptually to explain anomalous rotation speeds in galaxies and the formation of them\cite{GalaxyDM}. Dark matter does not interact with light or the rest of the electromagnetic spectrum (That is why it is obscure), but by definition it interacts gravitationally with itself and with baryonic matter. The second concept is the assertion that dark matter is \emph{cold}, which refers to the speed of movement of particles of dark matter does not reach relativistic limits.
+
+This model then proposes three fundamental components for the universe and its behavior as a thermodynamic, isotropic and homogeneous system on a large scale. These three constituents are: matter, which includes dark matter and baryonic matter. dark energy and radiation, which groups electromagnetic radiation and neutrinos for their ability to move at relativistic speeds.
+
+This model then proposes three fundamental components for the universe and its behavior as a thermodynamic, isotropic and homogeneous system on a large scale\cite{CARROLL}. These three constituents, expressed as abundances with percentage density parameters, are: \textbf{Matter} (\textbf{$\Omega_O$}), which includes \texttt{Dark Matter} (\textbf{$\Omega_c$}) and \texttt{Baryonic Matter} (\textbf{$\Omega_b$}), \textbf{Dark energy} (\textbf{$\Omega_L$}) and \textbf{Radiation} (\textbf{$\Omega_R$}), which groups electromagnetic radiation and neutrinos for their ability to move at relativistic speeds. The abundance of radiation is so small compared to the other two that it is omitted many times when establishing the parameters of a simulation  (\textbf{$\Omega_R = 0$}). The total percentage density $\Omega_T$ is equal to one and is expressed as $\Omega_T = \Omega_O + \Omega_R + \Omega_L = 1$. Remember that $\Omega_b + \Omega_c = \Omega_O$. 
+\section{Results}
+In this section will be presented the results of applying the methods suggested above to an N-body simulation. 
+
+\subsection{Grid construction}
+Once the data of position, speed and mass of each object have been loaded, the construction of the grid is carried out. Since it is a cubic space with 1200 Mpc $h^{-1}$ per side, a good proposal for $N_{side}$ is 120. In this way each voxel would have a volume of $10^3 Mpc^{3}h^{-3}$ and there would be a total of 1,728,000 voxels in the whole space. 
+
+\paragraph{Mass Grid.} The initial mass grid \textbf{M} is built with the method shown in \ref{sec:INTROMgrid}.
+\paragraph{Velocity Grids.} Axial velocity grids \textbf{$V_{x}$} , \textbf{$V_{y}$} and \textbf{$V_{z}$} are build initially with a simple sweep of all the cells in the grid and using on each voxel the methods shown in Section \ref{sec:INTROVgrid}. \textbf{$V_{mag}$} is built as well based on the Axial velocity grids previously generated.  
+
+
+
+\textbf{Remember} that all of this grids has dimensions \texttt{[120 x 120 x 120]} since is the grid size used. each Voxel is [$10 Mpc h^{-1}$ x $10 Mpc h^{-1}$ x $10 Mpc h^{-1}$ ] in dimensions and has a volume of $10^3 Mpc^{3}h^{-3}$.
+
+\subsection{Initial analysis}
+\label{sec:initanalysis}
+Since the whole simulation box volume is 17.28 x $10^{8} Mpc^{3}h^{-3}$ and the sum of every voxel in the mass grid \footnote{Notice this expresses the whole mass of the simulation box.} is 3.07 x $10^{19} M_{\odot}$, the \textbf{Universe Density of the Simulation} ,defined as the density of the whole simulation box, takes a value of:
+\begin{equation}
+    \rho_{s} = 1.78\text{ x }10^{10} M_{\odot} Mpc^{-3} h^{2}
+\label{eq:UNI}
+\end{equation}
+\subsubsection{Initial Speed and Mass Distribution}
+
+
+Once this new scalar for speed is calculated for each voxel in the initial condition, a distribution can be formed from counting the  speeds of all the voxels as shown in Figure \ref{fig:SpeedDistribution}. The Mass distribution of the simulation corresponding to the initial conditions is shown in Figure \ref{fig:InMassDistribution}. This is the \textbf{Initial Mass Distribution} of the simulation. 
+
+This is \texttt{NOT} the distribution of mass that would be used later in the development of the characterization, as will be shown later, mainly because for future analysis it is necessary that the field of mass is differentiable.
+
+
+\subsubsection{Quantifying Initial acretion with the VDC} \label{sec:VDCquantifyingResults}
+Since the main purpose of using velocities to analyze the system is to quantify the accretion of different areas of space, it is necessary to determine this volumetric divergence of velocity for each voxel. For this the equation \ref{eq:VDCcalculo} is used. The VDC is calculated and, again, there is a distribution associated with the count of the VDCs of each voxel.
+
+% \begin{figure}[!h]
+%     \centering
+%     \includegraphics[width=320pt]{V_VDC_0.png}
+%     \caption{ The \textit{upper Histogram} shows the Initial distribution for the speed magnitude of every Voxel. The Speed of the milky way relative to the Cosmic Microwave Background is marked with a black dashed line, corresponding to 631 $\pm$  20 Km/s . The \textit{lower Histogram} shows the Initial VDC coeficient distribution along the voxels of the grid. This analysis is done without making any Gaussian filter over the speed fields.}
+%     \label{fig:SpeedDistribution}
+% \end{figure}
+
+Since regions of high accretion are those in which matter is coming together, this matter must come from somewhere. That is why it is expected that there are regions where the accretion is negative, that is, where the haloes are moving away from each other. This can be seen in Figure \ref{fig:2D_VDC} where the zones with divergent velocity vectors have a negative VDC, while the regions where the accretion is large have a positive VDC.
+It is expected that there will be almost the same proportion of positive and negative accretions since the simulation was carried out under periodic conditions and without external influence. There is a general increase of accretion when it comes to a gravitational model due to the large structure formation. Since gravity follows the law of the square inverse, it is expected that what is near the accretion nuclei is falling faster towards them than the matter that is close to the voids. That is to say that the areas that are attracting matter are filled at a higher rate than with which the voids are emptied. Given this, the values of positive accretion should be larger in magnitude than those of negative accretion.
 
 % \begin{figure}
-% \centering
-%     \includegraphics[width=0.48\textwidth]{doppler}
-%   \caption{\textbf{Spectra from receding/approaching sides of a toy
-%       model LAE.}  These results correspond to the RT simulation with
-%     $\vout=25$\kms, $\vrot=50$\kms, $\tauh=10^5$. 
-%     The spectra were computed for a viewing angle of
-%     $\theta=90^{\circ}$. This toy model illustrates to what extent spectra from
-%     opposite sides of a galaxy have an imprint of the rotational
-%     kinematics. 
-%     \label{fig:doppler}}
+%     \centering
+%     \includegraphics[width=320pt]{gauss.png}
+%     \caption{In a cross section of the 3D grid at a random Z, the corresponding  velocity vectors in X and Y are shown in black. The VDC field is shown in colors, where yellow zones have a big positive VDC and dark blue regions are those with big negative values for VDC. Notice how in these structures the VDC is much more positive in the center of the agglomerations than in the rest of the structure.}
+%     \label{fig:2D_VDC}
+% \end{figure}
+
+Assuming there is a structure forming by a group of voxels, note that at no time the peculiar speed of the group itself is neglected. This is because it takes into account the difference between the incoming and outgoing velocities of each voxel and not the velocities themselves. For example, assume that there is a group of voxels that are close to each other with similar speeds in the same direction. At first glance, one could say that it is a transit region and that there is no structure in formation there. But when looking at the $\Phi$ grid, it may be noted that voxels have higher VDC towards the center of the studied region, which would mean that a structure is being formed and that its own velocity with respect to the inertial frame of the simulation is different from zero .
+
+
+\subsection{Gaussian Convolution and Sigma relevance}
+
+In his study about Laniakea, Tully\cite{tully_laniakea_2014} emphasizes a simple idea but with great influence on the study that will be developed. In his study is mentioned that, in cosmological frameworks, it is assumed that large-scale structure formation is due to Gaussian primordial fluctuations of the field of gravity. It is expected that as long as the density and speed fields evolution remain in the linear regime, they will keep their Gaussian properites. That is why to obtain adequate results it is necessary to take into account these Gaussian behavior of velocity and mass fields by smoothing them.
+% \begin{figure}[!h]
+%     \centering
+%     \includegraphics[width=380pt]{SigmasVDC.png}
+%     \caption{Here is shown  a random cross section of the softened VDC fields. The $\sigma_{Vox}$ used for every case is shown on top of every plot. Notice how peak values decrease while $\sigma_{Vox}$ value increases.}
+%     \label{fig:SigmasVDCZcut}
+% \end{figure}
+Also, in order to perform the watershed analysis in a VDC grid it is necesary that the scalar field represented by the grid is differentiable, otherwise the watershed algorithm will find discontinuities and eventually will lead to the misclassification of superclusters.
+
+In order to perform a complete watershed analysis over the VDC and extend it to characterization of superclusters based on features as volume or mass,  it is necesary to apply the  \textbf{same} Gaussian Filter to the 3D axial velocity grids and the mass grid as well. This in order to have consistent measures despite the smoothing of the VDC field.
+
+
+
+% \begin{figure}[!h]
+%     \centering
+%     \includegraphics[width=400pt]{VMD_varios.png}
+%     \caption{A distribution of the speed magnitude for the voxels in the grid $V_{mag}$ calculated for different values of $\sigma_{Vox}$. Notice how the ranges of values change when $\sigma_{Vox}$ changes.}
+%     \label{fig:MD_Varios}
+% \end{figure}
+
+To perform the smoothing, a $\sigma_{Vox}$ value is needed in order to define the width of the Gaussian Filter. With small $\sigma_{Vox}$\footnote{Small $\sigma$ are between 1 and 5 voxels in the grid reference. Big $\sigma$ are values of 15 voxels or more.} many structures are visible in a fine and defined network in the VDC grid, while big $\sigma_{Vox}$ only diferentiate big structures with barely any resolution of smaller filaments. Also, using big $\sigma_{Vox}$ cause peak values to be smoothed and values of the field \textit{move }closer to  the average value of the field. This effects can be seen in Figure \ref{fig:SigmasVDCZcut} where the same cross-section of the VDC grid is shown but smoothed with different values of $\sigma_{Vox}$.
+
+
+% \begin{figure}[!h]
+%     \centering
+%     \includegraphics[width=400pt]{VCD_varios.png}
+%     \caption{A distribution of the VDC for the voxels in the grid calculated for different values of $\sigma_{Vox}$. Notice how the distibution ranges and expected values change when $\sigma_{Vox}$ changes.}
+%     \label{fig:VCD_Varios}
 % \end{figure}
 
 
-\section{Theoretical Models}
-\label{sec:theory}
+\paragraph{Remember}  that once the $\sigma_{Vox}$ value has been chosen, the smoothing must be done for the axial velocity grids $V_x$, $V_y$, $V_z$ and the mass grid \textbf{M}. This in order to have coherent results in future processes.
 
 
 
-\begin{equation}
-	v_{x}=\frac{x}{R}\vout - \frac{y}{R}\vrot ,
-	\label{eq:vx}
-\end{equation}
 
-\begin{equation}
-	v_{y}=\frac{y}{R}\vout + \frac{x}{R}\vrot ,
-	\label{eq:vy}
-\end{equation}
-
-\begin{equation}
-	v_{z}=\frac{z}{R}\vout,
-	\label{eq:vz}
-\end{equation}
-%
-
-\subsection{Quantitative Trends}
-\label{sec:quantitative}
+Once the grids have been smoothed with a defined $\sigma_{Vox}$, it is evident that the magnitude of the values in the grids and the ones subsequently calculated is reduced. It was expected that this attenuation would happen since the interpolation brings the data closer to the field average. This can be evidenced in the figures \ref{fig:MD_Varios} and \ref{fig:VCD_Varios}.
 
 
-\begin{equation}
-\label{eq:std}
-\STD = \sqrt{m_2},
-\end{equation}
+ Hence in order to define geometric boundaries for random objects a powerful tool called  the \textbf{Watershed Algorithm} is used. For this problem the watershed method is fundamental for the recognition of clusters and, therefore, it is the backbone of this work.
+ 
+ If the algorithm works properly, the regions that the algorithm segregates should be able to be compared at a glance with the perturbations of the VDC field. This can be seen in Figure \ref{fig:1Pert}, where a section of the smoothed scalar field with $\sigma_{Vox} = 1$ Vox and its respective classification is shown. Figure \ref{fig:3Pert} shows the same cut of the grid, this time smoothed with $\sigma_{Vox} = 3$ Vox, where it is easy to notice that in this last case the regions found are larger.
 
-\begin{equation}
-\label{eq:skw}
-\SKW = \frac{m_3}{m_2^{3/2}},
-\end{equation}
+% \begin{figure}
+%     \centering
+%     \includegraphics[width=380pt]{1PlotPert_48.png}
+%     \caption{On the left there is a random cut on the axis where the regions with different accretion are observed. On the right is the classification made by the Watershed method, where different regions have different colors.}
+%     \label{fig:1Pert}
+% \end{figure}
 
-\begin{equation}
-\label{eq:bi}
-\BI = \mathrm{KURTOSIS} - \SKW^2 = \frac{m_4}{m_2^{2}} - \frac{m_3^2}{m_2^{3}},
-\end{equation}
-%
-
-
-In the range of parameter space explore, this difference has as an
-upper bound of $\sim 7\%$, $3\%$ and $\sim 2\%$ for
- $\tauh=10^5$, $10^6$ and $10^7$, respectively. 
+% \begin{figure}[!h]
+%     \centering
+%     \includegraphics[width=380pt]{3PlotPert_48.png}
+%     \caption{This graph shows the same cross section as Figure \ref{fig:1Pert}, but this time the field was smoothed with $\sigma_{Vox}$. In this case, we can observe a vacuum structure represented in black, where the borders of several regions effectively meet. In both graphs it is seen how the distinguishable accretion peaks are classified as independent regions by the algorithm.}
+%     \label{fig:3Pert}
+% \end{figure}
+As for the shape of the regions, superclusters are expected to have random and therefore unpredictable forms. However, it is possible to establish patterns that the regions must follow to determine if the algorithm is faulty or inefficient. For example, it is expected that in regions of void, i.e. those with negative accretion, the borders of many regions will be brought together. This is because they are the last parts of the scalar map that the surveyed of watershed evaluates. Figure \ref{fig:3Pert} shows a huge void where this predicate can be corroborated.
 
 
+To visualize the behavior of the algorithm, it is applied on a grid already smoothed with a large $\sigma_{Vox}$. This is so that the structures are differentiable and can be compared with their respective allocation by regions. In this case $\sigma_{Vox} = 3$ vox is selected since it allows to have many superclusters in the space of the simulation with a large variety of sizes. In order to avoid plotting each point of the grid and visualize the main structures, it is convenient to plot those regions whose VDC values exceed a certain threshold. The result of this process is shown in Figure \ref{fig:3STRUCTURES}.
+% \begin{figure}[!h]
+%     \centering
+%     \includegraphics[width=450pt]{N65SegmentationSigmas137.png}
+%     \caption{The Watershed Algorithm with the parameters selected is applied the VDC Grid $\Phi$ for a field smoothed with $\sigma_{Vox} = 3$ Vox. On the right are shown those regions of the VDC field that exceed the threshold set at 0.65 $\Phi_{max}$, where $\Phi_{max}$ is the largest accretion registered in the VDC field $\Phi$. On the left is the classification by groups that the algorithm made for these same regions.}
+%     \label{fig:3STRUCTURES}
+% \end{figure}
 
-\section{Discussion}
-\label{sec:discussion}
-.
+The algorithm assigns an integer as the identifier for each voxel that the sweep evaluates. This integer is in ascending order, for simplicity of the algorithm. For example, the identifier \texttt{'1'} was assigned to the group associated with the \texttt{first} seed that was found, the identifier \texttt{'255'} was assigned to the group of the \texttt{255th} seed and so on. As expected, the first groups that the algorithm recognizes are those whose origin had very high accretion. These high accretion centers belong to the largest superclusters, which are expected to have the lowest identifiers.
 
-\subsection{\lya Kinematic Maps}
-\label{subsec:kinematic}
+\subsubsection{Sigma Influence Analysis}
+\label{sec:Sigmainfluence}
+Watershed's algorithm was performed on the grid $\Phi$ that was built with smoothed speeds $V_{xyz}$ with certain  $\sigma_{Vox}$. The method found a determined number of superclusters in the entire space and assigns each supercluster a group identifier. If the method was used, it is worth saying that all the points in the grid already belong to a group.
 
-($\approx 80$kpc) LAE.
-In more recent work
-receding/approaching spectra is close to $\sim 25\ \kms$, which is
-a fourth of the naively expected value of $2\vrot=100\ \kms$,
-due to the fact that only a small fraction of the photons are emitted
-at the extreme of the galaxy having the maximum rotational velocity of
-$50\ \kms$. 
+% \begin{figure}[!h]
+%     \centering
+%     \includegraphics[width=320pt]{Nclusters.png}
+%     \caption{Here is shown that effectively a smaller $\sigma_{Vox}$ implies recognizing many more structures; This is because each structure is of a smaller volume and a larger quantity is required to fill the entire space of the simulation. In this case 15778 superclusters were obtained for $\sigma_{Vox}=1$ Vox, however for $\sigma_{Vox}=20$ Vox only 14 superclusters were identified.}
+%     \label{fig:Nclusters}
+% \end{figure}
+
+When defining different $\sigma_{Vox}$, it is expected that prominent fluctuations in the VDC field occupy a greater or lesser volume depending on the chosen $\sigma_{Vox}$. Similarly, i't is expected that by using a larger $\sigma_{Vox}$, for example, the method classify superclusters that are larger and therefore more massive. Figure \ref{fig:Nclusters} shows the number of superclusters classified for each $\sigma_{Vox}$, while Figure \ref{fig:masaAcumulada}  shows a mass distribution with the number of superclusters with a mass equal to or less than a certain value. In both plots it is observed that the $\sigma_{Vox}$ is indeed relevant in the definition of large scale strutures in simulations.
+
+% \begin{figure}[!h]
+%     \centering
+%     \includegraphics[width=420pt]{MasasMayoresnormc.png}
+%     \caption{Here we show the number of superclusters with masses above a certain threshold for each $\sigma_{Vox}$. As expected, applying the Gaussian filter with small $\sigma_{Vox}$ causes many small structures to be recognized, while using large $\sigma_{Vox}$ builds fewer superclusters but with much larger masses.}
+%     \label{fig:masaAcumulada}
+% \end{figure}
+
+\subsection{Supercluster characterization}
+
+On the VDC grid $\Phi$, the watershed scan with $\sigma_{Vox} = 1$ Vox is executed and \textbf{15778 superclusters} are obtained. As expected, the borders are not smooth and it is a varied \emph{Zoo} of shapes and sizes. Now we have a catalog of superclusters in the simulation, with definite volumes in the grid and, therefore, with a mass that is also defined. Each voxel already belongs to a group as well as the mass it contains and it is easy to extract new information from mass and volume statistics. By extension, these data also allow conclusions to be drawn about density. We also have spatial data of each voxel that belongs to each group. This is important since not only do you have the volume data, but you also know the shape of each supercluster. 
+
+% \begin{figure}[!h]
+%     \centering
+%     \includegraphics[width=450pt]{DensidadSigma.png}
+%     \caption{On the left, the average density of supercumulus is plotted for each $\sigma_{Vox}$. In the center and on the right, the largest volume and mass found for a supercluster are shown respectively. It is wise to clarify that the supercluster with more volume does not have to be the most massive.}
+%     \label{fig:DensMassVolLani}
+% \end{figure}
+
+In this section the statistical analysis will be treated by these two flanks: on the one hand there is information on mass and density analysis, and on the other hand everything that has to do with the geometrical properties of superclusters.
+
+\subsubsection{Mass, Volume and density}
+
+The statistical data found on the mass and volume of the characterized regions make it possible to extrapolate their density easily since it is the ratio between these two values. In Figure \ref{fig:HISTVMD1} you can see a distribution for each of these three quantities, along with a density distribution\footnote{Redundancy intended} on these two axes. There is not only information about the simulation, but also the position of Laniakea in these distributions.
+
+% \begin{figure}
+%     \centering
+%     \includegraphics[width=360pt]{HistVMD_1.png}
+%     \caption{Distributions of mass, volume and density for the 15778 superclusters found with $\sigma_{Vox} = 1 $ Vox. Notice how, even with errorbars, Laniakea is at the edges of the distributions and in an atypical region of the density histogram. }
+%     \label{fig:HISTVMD1}
+% \end{figure}
+
+Although Laniakea is in an atypical region in terms of mass and volume, its density is very close to the mean density of the superclusters and the critical density of the universe reported in Equation \ref{eq:UNI}. Even if we observe all the area corresponding to the uncertainty of Laniakea in the density map, the probability of finding a supercluster with these characteristics in the simulation is 6.52\%.
+
+\subsubsection{Geometric Analysis}
+Once the regions have been segregated and their volumes, densities and masses characterized, it is necessary to continue with the study corresponding to the shape of the superclusters. Since these volumes are so complex in form, the problem of shape charactetization is evaluated from the analysis of moments of inertia. Since for each supercluster we already have the position of the voxels that form it and the associated mass for each of them, it is easy to calculate for each region the coordinates of the CM and its Inertia Tensor, as shown in Section \ref{sec:IN}.
+
+% \begin{figure}
+%     \centering
+%     \includegraphics[width=480pt]{shapeStats_1M.png}
+%     \caption{On the left you can see how each supercluster is located in this space given its own moments of inertia with some notable tendency in the mass. On the right, a density distribution of the graph on the left is plotted. When all moments of inertia are equal, it is expected that the supercluster is close to region \textbf{A} in the graph corresponding to \texttt{spheres}. If the two largest semimajor axis are equal, the supercluster is in region \textbf{B} that corresponds to \texttt{prolate top} or elongated sphere. If the two smallest semimajor axis are equal, the supercluster belongs to the region \textbf{C} with the \texttt{oblate top} or oblate sphere. Region \textbf{D} belongs to those \texttt{asymmetric} superclusters whose principal moments of inertia are different from each other.}
+%     \label{fig:INERTIA}
+% \end{figure}
+
+Keep in mind that there are superclusters that are crossing the walls of the simulation, since it is in periodic conditions, and therefore the calculation of their CM is compromised. To solve this problem each supercluster must be isolated and displaced by the axes of the simulation until an optimal displacement is found for which none of its voxels touch any wall. When the supercluster has been centered, the usual calculation of the CM is made. Once the coordinates of the center of mass have been obtained, they are displaced in the opposite direction the same distance as before and thus the position of the CM in the simulation frame is obtained.
+
+The moments of inertia associated with the main axes are calculated and organized in such a way that $ \lambda_3 < \lambda_2 < \lambda_1 $. In order to be able to make a valid analysis on the shape, the difference between the two biggest semi-major axes and the difference between the two smallest ones is analyzed in Figure \ref{fig:INERTIA}. Taking into account that Laniakea has a flattened spheroid shape, it would be expected to be in region \textbf{C} of the right graph of Figure \ref{fig:INERTIA}. It is a relatively unpopulated region of the graph, indicating that very few superclusters share this form with laniakea. Suppose that in this distribution the oblate top superclusters correspond to all those points that lie below 0.05 on the vertical axis. The probability of finding a supercluster with these characteristics in the simulation is 7.04\%.
+
+Laniakea, again, is found in an atypical region for a supercluster of the proposed dimensions, however, it should be noted that towards this region of the graph are more superclusters with masses similar to that registered for Laniakea by Tully et  al. \cite{tully_laniakea_2014}. This analysis was performed by Sergio Hernández in his work\cite{SHC_TESIS} obtaining similar results.
+
+
+
+
+
+
+
 
 
 
 \section{Conclusions}
 \label{sec:conclusions}
+Modern cosmology aims to answer questions about the origin and large-scale structure of the universe. The astronomical observations already allowed us to have an idea of what the universe is like, but it was the arrival of computers and cosmological simulations that allowed us to answer more relevant questions.
+A recent result in this branch was the definition of our local supercluster Laniakea made by Tully el al.(2014)\cite{tully_laniakea_2014}, who used the velocity flow of galaxies for this purpose. Already having the characteristics of Laniakea, both in form and in mass, the next question would be how common it is among the other superclusters.
 
+We divide the space of the simulation with a grid size close to the canonical length of \texttt{10 Mpc} used in observations to find Laniakea, which corresponds to a grid of [$120 \times 120 \times 120$].Once the velocity field is obtained, it is smoothed with Gaussian kernels of different width $\sigma_{Vox}$. Then the VDC is computed for each gridpoint. In order to differentiate structures from the order of the observable superclusters i.e. structures of about 10 Mpc $h^{-1}$, we use $\sigma_{Vox} = 1$ Vox. Using larger values of $\sigma_{Vox}$ does \texttt{NOT} yield erroneous information, but information with little usefulness about formation in a much larger scale.  
 
+The implementation of the Watershed algorithm was a complete success. It managed to segregate regions based on the divergence field. Two parameters, $R_T$ and $Q_T$, are defined to control the algorithm and the segregation it makes. $R_T$ is of high relevance since it indirectly dictates the number of \emph{origins} that there are in the map and, therefore, the number of superclusters that will be in the space of the simulation. $Q_T$, on the other hand, does not affect the analysis carried out by the algorithm in a meaningful way since it rather indirectly defines the top of watershed sweeps that must be made before proceeding to classify the voxels by distance.
 
+With the superclusters segregated and characterized we compare their propoerties against Laniakea. We find that our supercluster is  atypical according to its mass, volume and shape. On the other hand, the density of Laniakea seems to be frequent in the supercluster population since it is in a range close to the average. The populations with which Laniakea is compared within the simulation are small, either evaluating its mass, its volume or its shape. This makes it difficult to find a supercluster in the simulation that is similar to Laniakea within the ranges defined in Figures \ref{fig:HISTVMD1} and \ref{fig:INERTIA} at the same time. The probability of finding in the simulation a supercluster similar to Laniakea in those three aspects is a little lower than 0.07\%.
+
+Regarding future work, we strongly suggest to experiment with the initial conditions of the problem and with the definition of the grid. A proposal is to define a grid with distances less than 10 Mpc $h^{-1}$, that is, with a higher value of $N_{side}$ and therefore with greater definition. You can also try different mass cuts for the Halos, different simulations of the same cosmology used in this work or even simulations in the context of different cosmologies.
 \bibliographystyle{mnras}
 \bibliography{references}
 
