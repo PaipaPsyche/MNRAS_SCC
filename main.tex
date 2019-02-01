@@ -1,6 +1,5 @@
 \documentclass[a4paper,fleqn,usenatbib]{mnras}
-%=========================================================================
-\usepackage{amsmath}
+%=========================================================================%\usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{graphicx}
 \usepackage{grffile}
@@ -338,22 +337,22 @@ This is \texttt{NOT} the distribution of mass that would be used later in the de
 \subsubsection{Quantifying Initial acretion with the VDC} \label{sec:VDCquantifyingResults}
 Since the main purpose of using velocities to analyze the system is to quantify the accretion of different areas of space, it is necessary to determine this volumetric divergence of velocity for each voxel. For this the equation \ref{eq:VDCcalculo} is used. The VDC is calculated and, again, there is a distribution associated with the count of the VDCs of each voxel.
 
-% \begin{figure}[!h]
-%     \centering
-%     \includegraphics[width=320pt]{V_VDC_0.png}
-%     \caption{ The \textit{upper Histogram} shows the Initial distribution for the speed magnitude of every Voxel. The Speed of the milky way relative to the Cosmic Microwave Background is marked with a black dashed line, corresponding to 631 $\pm$  20 Km/s . The \textit{lower Histogram} shows the Initial VDC coeficient distribution along the voxels of the grid. This analysis is done without making any Gaussian filter over the speed fields.}
-%     \label{fig:SpeedDistribution}
-% \end{figure}
+\begin{figure}
+    \centering
+    \includegraphics[width=240pt]{V_VDC_0.png}
+    \caption{ The \textit{upper Histogram} shows the Initial distribution for the speed magnitude of every Voxel. The Speed of the milky way relative to the Cosmic Microwave Background is marked with a black dashed line, corresponding to 631 $\pm$  20 Km/s . The \textit{lower Histogram} shows the Initial VDC coeficient distribution along the voxels of the grid. This analysis is done without making any Gaussian filter over the speed fields.}
+    \label{fig:SpeedDistribution}
+\end{figure}
 
 Since regions of high accretion are those in which matter is coming together, this matter must come from somewhere. That is why it is expected that there are regions where the accretion is negative, that is, where the haloes are moving away from each other. This can be seen in Figure \ref{fig:2D_VDC} where the zones with divergent velocity vectors have a negative VDC, while the regions where the accretion is large have a positive VDC.
 It is expected that there will be almost the same proportion of positive and negative accretions since the simulation was carried out under periodic conditions and without external influence. There is a general increase of accretion when it comes to a gravitational model due to the large structure formation. Since gravity follows the law of the square inverse, it is expected that what is near the accretion nuclei is falling faster towards them than the matter that is close to the voids. That is to say that the areas that are attracting matter are filled at a higher rate than with which the voids are emptied. Given this, the values of positive accretion should be larger in magnitude than those of negative accretion.
 
-% \begin{figure}
-%     \centering
-%     \includegraphics[width=320pt]{gauss.png}
-%     \caption{In a cross section of the 3D grid at a random Z, the corresponding  velocity vectors in X and Y are shown in black. The VDC field is shown in colors, where yellow zones have a big positive VDC and dark blue regions are those with big negative values for VDC. Notice how in these structures the VDC is much more positive in the center of the agglomerations than in the rest of the structure.}
-%     \label{fig:2D_VDC}
-% \end{figure}
+\begin{figure}
+    \centering
+    \includegraphics[width=240pt]{gauss.png}
+    \caption{In a cross section of the 3D grid at a random Z, the corresponding  velocity vectors in X and Y are shown in black. The VDC field is shown in colors, where yellow zones have a big positive VDC and dark blue regions are those with big negative values for VDC. Notice how in these structures the VDC is much more positive in the center of the agglomerations than in the rest of the structure.}
+    \label{fig:2D_VDC}
+\end{figure}
 
 Assuming there is a structure forming by a group of voxels, note that at no time the peculiar speed of the group itself is neglected. This is because it takes into account the difference between the incoming and outgoing velocities of each voxel and not the velocities themselves. For example, assume that there is a group of voxels that are close to each other with similar speeds in the same direction. At first glance, one could say that it is a transit region and that there is no structure in formation there. But when looking at the $\Phi$ grid, it may be noted that voxels have higher VDC towards the center of the studied region, which would mean that a structure is being formed and that its own velocity with respect to the inertial frame of the simulation is different from zero .
 
@@ -361,34 +360,34 @@ Assuming there is a structure forming by a group of voxels, note that at no time
 \subsection{Gaussian Convolution and Sigma relevance}
 
 In his study about Laniakea, Tully\cite{tully_laniakea_2014} emphasizes a simple idea but with great influence on the study that will be developed. In his study is mentioned that, in cosmological frameworks, it is assumed that large-scale structure formation is due to Gaussian primordial fluctuations of the field of gravity. It is expected that as long as the density and speed fields evolution remain in the linear regime, they will keep their Gaussian properites. That is why to obtain adequate results it is necessary to take into account these Gaussian behavior of velocity and mass fields by smoothing them.
-% \begin{figure}[!h]
-%     \centering
-%     \includegraphics[width=380pt]{SigmasVDC.png}
-%     \caption{Here is shown  a random cross section of the softened VDC fields. The $\sigma_{Vox}$ used for every case is shown on top of every plot. Notice how peak values decrease while $\sigma_{Vox}$ value increases.}
-%     \label{fig:SigmasVDCZcut}
-% \end{figure}
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=240pt]{SigmasVDC.png}
+    \caption{Here is shown  a random cross section of the softened VDC fields. The $\sigma_{Vox}$ used for every case is shown on top of every plot. Notice how peak values decrease while $\sigma_{Vox}$ value increases.}
+    \label{fig:SigmasVDCZcut}
+\end{figure}
 Also, in order to perform the watershed analysis in a VDC grid it is necesary that the scalar field represented by the grid is differentiable, otherwise the watershed algorithm will find discontinuities and eventually will lead to the misclassification of superclusters.
 
 In order to perform a complete watershed analysis over the VDC and extend it to characterization of superclusters based on features as volume or mass,  it is necesary to apply the  \textbf{same} Gaussian Filter to the 3D axial velocity grids and the mass grid as well. This in order to have consistent measures despite the smoothing of the VDC field.
 
 
 
-% \begin{figure}[!h]
-%     \centering
-%     \includegraphics[width=400pt]{VMD_varios.png}
-%     \caption{A distribution of the speed magnitude for the voxels in the grid $V_{mag}$ calculated for different values of $\sigma_{Vox}$. Notice how the ranges of values change when $\sigma_{Vox}$ changes.}
-%     \label{fig:MD_Varios}
-% \end{figure}
+\begin{figure}
+    \centering
+    \includegraphics[width=240pt]{VMD_varios.png}
+    \caption{A distribution of the speed magnitude for the voxels in the grid $V_{mag}$ calculated for different values of $\sigma_{Vox}$. Notice how the ranges of values change when $\sigma_{Vox}$ changes.}
+    \label{fig:MD_Varios}
+\end{figure}
 
 To perform the smoothing, a $\sigma_{Vox}$ value is needed in order to define the width of the Gaussian Filter. With small $\sigma_{Vox}$\footnote{Small $\sigma$ are between 1 and 5 voxels in the grid reference. Big $\sigma$ are values of 15 voxels or more.} many structures are visible in a fine and defined network in the VDC grid, while big $\sigma_{Vox}$ only diferentiate big structures with barely any resolution of smaller filaments. Also, using big $\sigma_{Vox}$ cause peak values to be smoothed and values of the field \textit{move }closer to  the average value of the field. This effects can be seen in Figure \ref{fig:SigmasVDCZcut} where the same cross-section of the VDC grid is shown but smoothed with different values of $\sigma_{Vox}$.
 
 
-% \begin{figure}[!h]
-%     \centering
-%     \includegraphics[width=400pt]{VCD_varios.png}
-%     \caption{A distribution of the VDC for the voxels in the grid calculated for different values of $\sigma_{Vox}$. Notice how the distibution ranges and expected values change when $\sigma_{Vox}$ changes.}
-%     \label{fig:VCD_Varios}
-% \end{figure}
+\begin{figure}
+    \centering
+    \includegraphics[width=240pt]{VCD_varios.png}
+    \caption{A distribution of the VDC for the voxels in the grid calculated for different values of $\sigma_{Vox}$. Notice how the distibution ranges and expected values change when $\sigma_{Vox}$ changes.}
+    \label{fig:VCD_Varios}
+\end{figure}
 
 
 \paragraph{Remember}  that once the $\sigma_{Vox}$ value has been chosen, the smoothing must be done for the axial velocity grids $V_x$, $V_y$, $V_z$ and the mass grid \textbf{M}. This in order to have coherent results in future processes.
@@ -403,29 +402,29 @@ Once the grids have been smoothed with a defined $\sigma_{Vox}$, it is evident t
  
  If the algorithm works properly, the regions that the algorithm segregates should be able to be compared at a glance with the perturbations of the VDC field. This can be seen in Figure \ref{fig:1Pert}, where a section of the smoothed scalar field with $\sigma_{Vox} = 1$ Vox and its respective classification is shown. Figure \ref{fig:3Pert} shows the same cut of the grid, this time smoothed with $\sigma_{Vox} = 3$ Vox, where it is easy to notice that in this last case the regions found are larger.
 
-% \begin{figure}
-%     \centering
-%     \includegraphics[width=380pt]{1PlotPert_48.png}
-%     \caption{On the left there is a random cut on the axis where the regions with different accretion are observed. On the right is the classification made by the Watershed method, where different regions have different colors.}
-%     \label{fig:1Pert}
-% \end{figure}
+\begin{figure}
+    \centering
+    \includegraphics[width=240pt]{1PlotPert_48.png}
+    \caption{On the left there is a random cut on the axis where the regions with different accretion are observed. On the right is the classification made by the Watershed method, where different regions have different colors.}
+    \label{fig:1Pert}
+\end{figure}
 
-% \begin{figure}[!h]
-%     \centering
-%     \includegraphics[width=380pt]{3PlotPert_48.png}
-%     \caption{This graph shows the same cross section as Figure \ref{fig:1Pert}, but this time the field was smoothed with $\sigma_{Vox}$. In this case, we can observe a vacuum structure represented in black, where the borders of several regions effectively meet. In both graphs it is seen how the distinguishable accretion peaks are classified as independent regions by the algorithm.}
-%     \label{fig:3Pert}
-% \end{figure}
+\begin{figure}
+    \centering
+    \includegraphics[width=240pt]{3PlotPert_48.png}
+    \caption{This graph shows the same cross section as Figure \ref{fig:1Pert}, but this time the field was smoothed with $\sigma_{Vox}$. In this case, we can observe a vacuum structure represented in black, where the borders of several regions effectively meet. In both graphs it is seen how the distinguishable accretion peaks are classified as independent regions by the algorithm.}
+    \label{fig:3Pert}
+\end{figure}
 As for the shape of the regions, superclusters are expected to have random and therefore unpredictable forms. However, it is possible to establish patterns that the regions must follow to determine if the algorithm is faulty or inefficient. For example, it is expected that in regions of void, i.e. those with negative accretion, the borders of many regions will be brought together. This is because they are the last parts of the scalar map that the surveyed of watershed evaluates. Figure \ref{fig:3Pert} shows a huge void where this predicate can be corroborated.
 
 
 To visualize the behavior of the algorithm, it is applied on a grid already smoothed with a large $\sigma_{Vox}$. This is so that the structures are differentiable and can be compared with their respective allocation by regions. In this case $\sigma_{Vox} = 3$ vox is selected since it allows to have many superclusters in the space of the simulation with a large variety of sizes. In order to avoid plotting each point of the grid and visualize the main structures, it is convenient to plot those regions whose VDC values exceed a certain threshold. The result of this process is shown in Figure \ref{fig:3STRUCTURES}.
-% \begin{figure}[!h]
-%     \centering
-%     \includegraphics[width=450pt]{N65SegmentationSigmas137.png}
-%     \caption{The Watershed Algorithm with the parameters selected is applied the VDC Grid $\Phi$ for a field smoothed with $\sigma_{Vox} = 3$ Vox. On the right are shown those regions of the VDC field that exceed the threshold set at 0.65 $\Phi_{max}$, where $\Phi_{max}$ is the largest accretion registered in the VDC field $\Phi$. On the left is the classification by groups that the algorithm made for these same regions.}
-%     \label{fig:3STRUCTURES}
-% \end{figure}
+\begin{figure}
+    \centering
+    \includegraphics[width=240pt]{N65SegmentationSigmas137.png}
+    \caption{The Watershed Algorithm with the parameters selected is applied the VDC Grid $\Phi$ for a field smoothed with $\sigma_{Vox} = 3$ Vox. On the right are shown those regions of the VDC field that exceed the threshold set at 0.65 $\Phi_{max}$, where $\Phi_{max}$ is the largest accretion registered in the VDC field $\Phi$. On the left is the classification by groups that the algorithm made for these same regions.}
+    \label{fig:3STRUCTURES}
+\end{figure}
 
 The algorithm assigns an integer as the identifier for each voxel that the sweep evaluates. This integer is in ascending order, for simplicity of the algorithm. For example, the identifier \texttt{'1'} was assigned to the group associated with the \texttt{first} seed that was found, the identifier \texttt{'255'} was assigned to the group of the \texttt{255th} seed and so on. As expected, the first groups that the algorithm recognizes are those whose origin had very high accretion. These high accretion centers belong to the largest superclusters, which are expected to have the lowest identifiers.
 
@@ -433,32 +432,32 @@ The algorithm assigns an integer as the identifier for each voxel that the sweep
 \label{sec:Sigmainfluence}
 Watershed's algorithm was performed on the grid $\Phi$ that was built with smoothed speeds $V_{xyz}$ with certain  $\sigma_{Vox}$. The method found a determined number of superclusters in the entire space and assigns each supercluster a group identifier. If the method was used, it is worth saying that all the points in the grid already belong to a group.
 
-% \begin{figure}[!h]
-%     \centering
-%     \includegraphics[width=320pt]{Nclusters.png}
-%     \caption{Here is shown that effectively a smaller $\sigma_{Vox}$ implies recognizing many more structures; This is because each structure is of a smaller volume and a larger quantity is required to fill the entire space of the simulation. In this case 15778 superclusters were obtained for $\sigma_{Vox}=1$ Vox, however for $\sigma_{Vox}=20$ Vox only 14 superclusters were identified.}
-%     \label{fig:Nclusters}
-% \end{figure}
+\begin{figure}
+    \centering
+    \includegraphics[width=240pt]{Nclusters.png}
+    \caption{Here is shown that effectively a smaller $\sigma_{Vox}$ implies recognizing many more structures; This is because each structure is of a smaller volume and a larger quantity is required to fill the entire space of the simulation. In this case 15778 superclusters were obtained for $\sigma_{Vox}=1$ Vox, however for $\sigma_{Vox}=20$ Vox only 14 superclusters were identified.}
+    \label{fig:Nclusters}
+\end{figure}
 
 When defining different $\sigma_{Vox}$, it is expected that prominent fluctuations in the VDC field occupy a greater or lesser volume depending on the chosen $\sigma_{Vox}$. Similarly, i't is expected that by using a larger $\sigma_{Vox}$, for example, the method classify superclusters that are larger and therefore more massive. Figure \ref{fig:Nclusters} shows the number of superclusters classified for each $\sigma_{Vox}$, while Figure \ref{fig:masaAcumulada}  shows a mass distribution with the number of superclusters with a mass equal to or less than a certain value. In both plots it is observed that the $\sigma_{Vox}$ is indeed relevant in the definition of large scale strutures in simulations.
 
-% \begin{figure}[!h]
-%     \centering
-%     \includegraphics[width=420pt]{MasasMayoresnormc.png}
-%     \caption{Here we show the number of superclusters with masses above a certain threshold for each $\sigma_{Vox}$. As expected, applying the Gaussian filter with small $\sigma_{Vox}$ causes many small structures to be recognized, while using large $\sigma_{Vox}$ builds fewer superclusters but with much larger masses.}
-%     \label{fig:masaAcumulada}
-% \end{figure}
+\begin{figure}
+    \centering
+    \includegraphics[width=240pt]{MasasMayoresnormc.png}
+    \caption{Here we show the number of superclusters with masses above a certain threshold for each $\sigma_{Vox}$. As expected, applying the Gaussian filter with small $\sigma_{Vox}$ causes many small structures to be recognized, while using large $\sigma_{Vox}$ builds fewer superclusters but with much larger masses.}
+    \label{fig:masaAcumulada}
+\end{figure}
 
 \subsection{Supercluster characterization}
 
 On the VDC grid $\Phi$, the watershed scan with $\sigma_{Vox} = 1$ Vox is executed and \textbf{15778 superclusters} are obtained. As expected, the borders are not smooth and it is a varied \emph{Zoo} of shapes and sizes. Now we have a catalog of superclusters in the simulation, with definite volumes in the grid and, therefore, with a mass that is also defined. Each voxel already belongs to a group as well as the mass it contains and it is easy to extract new information from mass and volume statistics. By extension, these data also allow conclusions to be drawn about density. We also have spatial data of each voxel that belongs to each group. This is important since not only do you have the volume data, but you also know the shape of each supercluster. 
 
-% \begin{figure}[!h]
-%     \centering
-%     \includegraphics[width=450pt]{DensidadSigma.png}
-%     \caption{On the left, the average density of supercumulus is plotted for each $\sigma_{Vox}$. In the center and on the right, the largest volume and mass found for a supercluster are shown respectively. It is wise to clarify that the supercluster with more volume does not have to be the most massive.}
-%     \label{fig:DensMassVolLani}
-% \end{figure}
+\begin{figure}
+    \centering
+    \includegraphics[width=240pt]{DensidadSigma.png}
+    \caption{On the left, the average density of supercumulus is plotted for each $\sigma_{Vox}$. In the center and on the right, the largest volume and mass found for a supercluster are shown respectively. It is wise to clarify that the supercluster with more volume does not have to be the most massive.}
+    \label{fig:DensMassVolLani}
+\end{figure}
 
 In this section the statistical analysis will be treated by these two flanks: on the one hand there is information on mass and density analysis, and on the other hand everything that has to do with the geometrical properties of superclusters.
 
@@ -466,24 +465,24 @@ In this section the statistical analysis will be treated by these two flanks: on
 
 The statistical data found on the mass and volume of the characterized regions make it possible to extrapolate their density easily since it is the ratio between these two values. In Figure \ref{fig:HISTVMD1} you can see a distribution for each of these three quantities, along with a density distribution\footnote{Redundancy intended} on these two axes. There is not only information about the simulation, but also the position of Laniakea in these distributions.
 
-% \begin{figure}
-%     \centering
-%     \includegraphics[width=360pt]{HistVMD_1.png}
-%     \caption{Distributions of mass, volume and density for the 15778 superclusters found with $\sigma_{Vox} = 1 $ Vox. Notice how, even with errorbars, Laniakea is at the edges of the distributions and in an atypical region of the density histogram. }
-%     \label{fig:HISTVMD1}
-% \end{figure}
+\begin{figure}
+    \centering
+    \includegraphics[width=240pt]{HistVMD_1.png}
+    \caption{Distributions of mass, volume and density for the 15778 superclusters found with $\sigma_{Vox} = 1 $ Vox. Notice how, even with errorbars, Laniakea is at the edges of the distributions and in an atypical region of the density histogram. }
+    \label{fig:HISTVMD1}
+\end{figure}
 
 Although Laniakea is in an atypical region in terms of mass and volume, its density is very close to the mean density of the superclusters and the critical density of the universe reported in Equation \ref{eq:UNI}. Even if we observe all the area corresponding to the uncertainty of Laniakea in the density map, the probability of finding a supercluster with these characteristics in the simulation is 6.52\%.
 
 \subsubsection{Geometric Analysis}
 Once the regions have been segregated and their volumes, densities and masses characterized, it is necessary to continue with the study corresponding to the shape of the superclusters. Since these volumes are so complex in form, the problem of shape charactetization is evaluated from the analysis of moments of inertia. Since for each supercluster we already have the position of the voxels that form it and the associated mass for each of them, it is easy to calculate for each region the coordinates of the CM and its Inertia Tensor, as shown in Section \ref{sec:IN}.
 
-% \begin{figure}
-%     \centering
-%     \includegraphics[width=480pt]{shapeStats_1M.png}
-%     \caption{On the left you can see how each supercluster is located in this space given its own moments of inertia with some notable tendency in the mass. On the right, a density distribution of the graph on the left is plotted. When all moments of inertia are equal, it is expected that the supercluster is close to region \textbf{A} in the graph corresponding to \texttt{spheres}. If the two largest semimajor axis are equal, the supercluster is in region \textbf{B} that corresponds to \texttt{prolate top} or elongated sphere. If the two smallest semimajor axis are equal, the supercluster belongs to the region \textbf{C} with the \texttt{oblate top} or oblate sphere. Region \textbf{D} belongs to those \texttt{asymmetric} superclusters whose principal moments of inertia are different from each other.}
-%     \label{fig:INERTIA}
-% \end{figure}
+\begin{figure}
+    \centering
+    \includegraphics[width=250pt]{shapeStats_1M.png}
+    \caption{On the left you can see how each supercluster is located in this space given its own moments of inertia with some notable tendency in the mass. On the right, a density distribution of the graph on the left is plotted. When all moments of inertia are equal, it is expected that the supercluster is close to region \textbf{A} in the graph corresponding to \texttt{spheres}. If the two largest semimajor axis are equal, the supercluster is in region \textbf{B} that corresponds to \texttt{prolate top} or elongated sphere. If the two smallest semimajor axis are equal, the supercluster belongs to the region \textbf{C} with the \texttt{oblate top} or oblate sphere. Region \textbf{D} belongs to those \texttt{asymmetric} superclusters whose principal moments of inertia are different from each other.}
+    \label{fig:INERTIA}
+\end{figure}
 
 Keep in mind that there are superclusters that are crossing the walls of the simulation, since it is in periodic conditions, and therefore the calculation of their CM is compromised. To solve this problem each supercluster must be isolated and displaced by the axes of the simulation until an optimal displacement is found for which none of its voxels touch any wall. When the supercluster has been centered, the usual calculation of the CM is made. Once the coordinates of the center of mass have been obtained, they are displaced in the opposite direction the same distance as before and thus the position of the CM in the simulation frame is obtained.
 
@@ -511,26 +510,28 @@ The implementation of the Watershed algorithm was a complete success. It managed
 
 With the superclusters segregated and characterized we compare their propoerties against Laniakea. We find that our supercluster is  atypical according to its mass, volume and shape. On the other hand, the density of Laniakea seems to be frequent in the supercluster population since it is in a range close to the average. The populations with which Laniakea is compared within the simulation are small, either evaluating its mass, its volume or its shape. This makes it difficult to find a supercluster in the simulation that is similar to Laniakea within the ranges defined in Figures \ref{fig:HISTVMD1} and \ref{fig:INERTIA} at the same time. The probability of finding in the simulation a supercluster similar to Laniakea in those three aspects is a little lower than 0.07\%.
 
-Regarding future work, we strongly suggest to experiment with the initial conditions of the problem and with the definition of the grid. A proposal is to define a grid with distances less than 10 Mpc $h^{-1}$, that is, with a higher value of $N_{side}$ and therefore with greater definition. You can also try different mass cuts for the Halos, different simulations of the same cosmology used in this work or even simulations in the context of different cosmologies.
+Regarding future work, we strongly suggest to experiment with the initial conditions of the problem and with the definition of the grid. A proposal is to define a grid with distances less than 10 Mpc $h^{-1}$, that is, with a higher value of $N_{side}$ and therefore with greater definition. You can also try different mass cuts for the Halos, different simulations of the same cosmology used in this work or even simulations in the context of different cosmologies.\\
+
+
 \bibliographystyle{mnras}
-\bibliography{references}
+\bibliography{References}
 
 
 
-\appendix
+% \appendix
 
-\section{Additional figures}
-\label{sec:appendix}
+% \section{Additional figures}
+% \label{sec:appendix}
 
-\begin{figure*}
-  \begin{center}
-    \includegraphics[width=0.49\textwidth]{doppler_shift_logtau5_theta90}
-    \includegraphics[width=0.49\textwidth]{doppler_shift_logtau7_theta90}
-  \end{center}
-  \caption{\textbf{Qualitative trends of changing outflow and
-      rotational velocity.}
-    Same layout as Figure \ref{fig:doppler_shift}. On the left:
-    $\tauh=10^5$ and $\theta=90^\circ$; on the right:     this time  $\tauh=10^7$ and $\theta=90^\circ$.}
-\end{figure*}
+% \begin{figure*}
+%   \begin{center}
+%     \includegraphics[width=0.49\textwidth]{doppler_shift_logtau5_theta90}
+%     \includegraphics[width=0.49\textwidth]{doppler_shift_logtau7_theta90}
+%   \end{center}
+%   \caption{\textbf{Qualitative trends of changing outflow and
+%       rotational velocity.}
+%     Same layout as Figure \ref{fig:doppler_shift}. On the left:
+%     $\tauh=10^5$ and $\theta=90^\circ$; on the right:     this time  $\tauh=10^7$ and $\theta=90^\circ$.}
+% \end{figure*}
 
 \end{document}
