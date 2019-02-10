@@ -6,7 +6,7 @@ Created on Sat Feb  9 22:58:03 2019
 import numpy as np
 import matplotlib.pyplot as plt
 from time import gmtime, strftime
-
+import itertools as itt
 
 DATA=np.load("div_test.npy")
 
@@ -20,8 +20,16 @@ def vecinos3D(ii,jj,kk,tam_r):
     jj_b=(jj+1)%tam_r
     kk_a=(kk-1)%tam_r
     kk_b=(kk+1)%tam_r 
-    return [ii_a,ii_b,ii,ii,ii,ii],[jj,jj,jj_a,jj_b,jj,jj],[kk,kk,kk,kk,kk_a,kk_b]
-
+    
+    xx=[ii_a,ii,ii_b]
+    yy=[jj_a,jj,jj_b]
+    zz=[kk_a,kk,kk_b]
+    
+    L=list(itt.product(*[xx,yy,zz]))
+ 
+    L=np.array(L).T
+    
+    return L[0],L[1],L[2]
 def revisarVecinos(ii,jj,kk,Pertenencia,tam_r):
     xx,yy,zz=vecinos3D(ii,jj,kk,tam_r)
     tam=len(xx)
@@ -34,7 +42,8 @@ def revisarVecinos(ii,jj,kk,Pertenencia,tam_r):
         return 0
     else:
         pert=np.array(pert)
-        return int(np.random.choice(pert[pert!=0]))
+        pert=list(pert[pert!=0])
+        return max(set(pert), key=pert.count)
         
 
 
@@ -69,8 +78,8 @@ def watershed(filename,filename_out,d_tolerancia,vacios_tolerancia):
     N_intervalos=7*tam
     
     
-    barridoA=np.linspace(div_max,div_min,N_intervalos)
-    barrido=np.concatenate((barridoA,barridoA))
+    barrido=np.linspace(div_max,div_min,N_intervalos)
+    #barrido=np.concatenate((barridoA,barridoA))
     
     tam_b=len(barrido)
     delta=barrido[0]-barrido[1]
@@ -91,8 +100,8 @@ def watershed(filename,filename_out,d_tolerancia,vacios_tolerancia):
         print(str(round((100*vacios[-1]/(tam**3)),6)) + " % del espacio está vacio ("+str(vacios[-1])+" voxeles)")   
         c=0
         for lev in barrido:
-            if(c%200==0):
-                print(str(round(c*100/tam_b,2))+" % evaluado ")
+            if(c%10==0):
+                print(str(round(c*100/tam_b,2))+" % evaluado ("+str(darVacios(Pertenencia))+" voxeles)")
             c+=1
             cota_inf=lev
             cota_sup=lev+delta
