@@ -8,9 +8,9 @@ import matplotlib.pyplot as plt
 from time import gmtime, strftime
 import itertools as itt
 
-DATA=np.load("div_test.npy")
-
-n_side=DATA.shape[0]
+#DATA=np.load("div_test.npy")
+#
+#n_side=DATA.shape[0]
 
 #=========================FUNCIONES=======================
 def vecinos3D(ii,jj,kk,tam_r):
@@ -20,7 +20,6 @@ def vecinos3D(ii,jj,kk,tam_r):
     jj_b=(jj+1)%tam_r
     kk_a=(kk-1)%tam_r
     kk_b=(kk+1)%tam_r 
-    
     xx=[ii_a,ii,ii_b]
     yy=[jj_a,jj,jj_b]
     zz=[kk_a,kk,kk_b]
@@ -28,13 +27,15 @@ def vecinos3D(ii,jj,kk,tam_r):
     L=list(itt.product(*[xx,yy,zz]))
  
     L=np.array(L).T
-    
+#retorna las coordenadas de los 26 vecinos y si mismo   
     return L[0],L[1],L[2]
+
+
 def revisarVecinos(ii,jj,kk,Pertenencia,tam_r):
     xx,yy,zz=vecinos3D(ii,jj,kk,tam_r)
     tam=len(xx)
     pert=[]
-    for i in range (tam):
+    for i in range (tam):#revisa las pertenencias de todos los vecionos 
         p_i=Pertenencia[xx[i],yy[i],zz[i]]
         pert.append(p_i)
     suma=np.sum(pert)
@@ -43,23 +44,11 @@ def revisarVecinos(ii,jj,kk,Pertenencia,tam_r):
     else:
         pert=np.array(pert)
         pert=list(pert[pert!=0])
-        return max(set(pert), key=pert.count)
+        return max(set(pert), key=pert.count) #el identificador de la mayoria
+#define el identificador del voxel basado en sus vecinos
+
         
 
-
-def dist_nodo_cercano(ii,jj,kk,x,y,z):
-    d=np.inf
-    xx=0
-    yy=0
-    zz=0
-    for i in range (len(x)):
-        dist=np.sqrt((x[i]-ii)**2+(y[i]-jj)**2+(z[i]-kk)**2)
-        if (dist<d):
-            d=dist
-            xx=x[i]
-            yy=y[i]
-            zz=z[i]
-    return d,xx,yy,zz
 
 
 def darVacios(Pertenencia):
@@ -69,26 +58,29 @@ def darVacios(Pertenencia):
 
 def watershed(filename,filename_out,d_tolerancia,vacios_tolerancia):
     DIV=np.load(filename)
-    DIV=DIV[1:-1,1:-1,1:-1]
     tam=np.shape(DIV)[0]
-    N_intervalos=20*tam
     
     div_max=round(np.amax(DIV)+5,-1)
     div_min=round(np.amin(DIV)-5,-1)
-    N_intervalos=7*tam
+    N_intervalos=40*tam
+    #se definen los limites del barrido y se hace un numero grande de cortes 
+    #entre estos limites
     
     
-    barrido=np.linspace(div_max,div_min,N_intervalos)
-    #barrido=np.concatenate((barridoA,barridoA))
+    barridoA=np.linspace(div_min,div_max,N_intervalos)
+    barrido=np.concatenate((barridoA,barridoA))
     
-    tam_b=len(barrido)
-    delta=barrido[0]-barrido[1]
+    #se hace eeste barrido 2 veces
+    
+    tam_b=len(barrido) #tamaño del barrido final
+    delta=np.abs(barrido[0]-barrido[1])
     Pertenencia=np.zeros([tam,tam,tam])
     
     
     x_nodos=[]
     y_nodos=[]
     z_nodos=[]
+    p_nodos=[]
     cont_nodos=1
     
     cont_iteraciones=0
@@ -96,42 +88,47 @@ def watershed(filename,filename_out,d_tolerancia,vacios_tolerancia):
     
     vacios=[]
     vacios.append(darVacios(Pertenencia))
+    
+    #El loop corre hasta que el numero de vacios es nulo
     while(vacios[-1]>vacios_tolerancia):
-        print(str(round((100*vacios[-1]/(tam**3)),6)) + " % del espacio está vacio ("+str(vacios[-1])+" voxeles)")   
+        print(str(round((100*vacios[-1]/(tam**3)),6)) + " % del espacio está vacio (En total son "+str(vacios[-1])+" voxeles)")   
+        
         c=0
+        
         for lev in barrido:
-            if(c%10==0):
-                print(str(round(c*100/tam_b,2))+" % evaluado ("+str(darVacios(Pertenencia))+" voxeles)")
+            if(c%300==0):
+                print(str(round(c*100/tam_b,2))+" % evaluado ("+str(darVacios(Pertenencia))+" voxeles sin asignar)")
             c+=1
             cota_inf=lev
             cota_sup=lev+delta
+            #se definen los limites del corte en los valores del campo
             aa=np.where((DIV<cota_sup)&(DIV>=cota_inf)&(Pertenencia==0))
             xx,yy,zz=aa[0],aa[1],aa[2]
             rec=len(xx)
+            #se obtienen los voxeles sin asignar
             for i in range (rec):
                 x,y,z=xx[i],yy[i],zz[i]
                 pert=revisarVecinos(x,y,z,Pertenencia,tam)
+                # se recorren y revisan sus vecinos...
                 if(pert!=0):
                     Pertenencia[x,y,z]=pert
                 else:
-                    d,ii,jj,kk=dist_nodo_cercano(x,y,z,x_nodos,y_nodos,z_nodos)
-                    if(d>d_tolerancia):
-                        Pertenencia[x,y,z]=cont_nodos
-                        cont_nodos+=1
-                        x_nodos.append(x)
-                        y_nodos.append(y)
-                        z_nodos.append(z)
+                    #si ninguno de sus 27 vecinos (incluyendose) esta asignado
+                    #Se convierte en un nuev nodo
+
+                    Pertenencia[x,y,z]=cont_nodos
+                    p_nodos.append(cont_nodos)
+                    cont_nodos+=1
+                    x_nodos.append(x)
+                    y_nodos.append(y)
+                    z_nodos.append(z)
+        #si no se cumple la condicion de voxeles vacios una vez recorrido el campo
+        #se recorre de nuevo
         cont_iteraciones+=1
         vacios.append(darVacios(Pertenencia))
-    aa=np.where(Pertenencia==0)
-    xx,yy,zz=aa[0],aa[1],aa[2]
-    rec=len(xx)
-    for i in range (rec):
-        d,ii,jj,kk=dist_nodo_cercano(xx[i],yy[i],zz[i],x_nodos,y_nodos,z_nodos)
-        Pertenencia[xx[i],yy[i],zz[i]]=Pertenencia[ii,jj,kk]
 
     np.save(filename_out,Pertenencia)
-    return cont_nodos-1,cont_iteraciones
+    return cont_nodos-1,cont_iteraciones,np.array([x_nodos,y_nodos,z_nodos,p_nodos]) 
 
 
 
@@ -146,7 +143,18 @@ name_out="pert_test.npy"
 tol_vacios=0
 DistanciaTol=1
 
-nodos,it=watershed(name_in,name_out,DistanciaTol,tol_vacios)
+nodos,it,NODOS=watershed(name_in,name_out,DistanciaTol,tol_vacios)
+
+np.save("NODOS.npy",NODOS)
+
+
+
 
 file_stats.write(str(nodos)+","+str(it)+","+str(tol_vacios)+","+str(DistanciaTol)+","+name_in+","+name_out+","+strftime("%Y.%m.%d-%H:%M:%S", gmtime())+"\n")
 file_stats.close()
+
+file_n=open("nodos.txt","w")
+# se escriben los nodos y su id para so posterior
+for N in range(len(NODOS[0])):
+    file_n.write(str(NODOS[0][N])+" "+str(NODOS[1][N])+" "+str(NODOS[2][N])+" "+str(NODOS[3][N])+"\n")
+file_n.close()
