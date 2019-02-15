@@ -128,6 +128,7 @@ def watershed(filename,filename_out,d_tolerancia,vacios_tolerancia):
         vacios.append(darVacios(Pertenencia))
 
     np.save(filename_out,Pertenencia)
+    print(str(np.amax(Pertenencia)) + " nodos encontrados con Watershed.")
     return cont_nodos-1,cont_iteraciones,np.array([x_nodos,y_nodos,z_nodos,p_nodos]) 
 
 
@@ -150,6 +151,7 @@ np.save("NODOS.npy",NODOS)
 
 
 
+
 file_stats.write(str(nodos)+","+str(it)+","+str(tol_vacios)+","+str(DistanciaTol)+","+name_in+","+name_out+","+strftime("%Y.%m.%d-%H:%M:%S", gmtime())+"\n")
 file_stats.close()
 
@@ -158,3 +160,10 @@ file_n=open("nodos.txt","w")
 for N in range(len(NODOS[0])):
     file_n.write(str(NODOS[0][N])+" "+str(NODOS[1][N])+" "+str(NODOS[2][N])+" "+str(NODOS[3][N])+"\n")
 file_n.close()
+
+
+file_p=open("params.txt","w")
+# se escriben los nodos y su id para so posterior
+file_p.write(str(nodos)+"\n")
+file_p.close()
+
