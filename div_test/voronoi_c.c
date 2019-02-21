@@ -3,7 +3,7 @@
 #include <math.h>
 
 
-int n_side=110;
+int n_side;
 
 //variales de iteracion
 int i;
@@ -14,9 +14,9 @@ int l;
 
 
 //sobre parametros
-
-int MAXCOLS=3;
-int MAXROWS=1562;
+FILE *parametros;
+int MAXCOLS=4;
+int MAXROWS;
 //sobre input
 FILE *sampleIN;
 int *x;
@@ -41,7 +41,7 @@ int construirGrid(int longitud);
 
 
 int main(){
-//printf("here\n");
+printf("Generando datos voronoi ...\n");
 reconocerParametros();
 cargarArreglosIniciales(MAXROWS);
 int LONG=n_side*n_side*n_side;
@@ -55,6 +55,13 @@ return 0;
 
 
 void reconocerParametros(){
+
+parametros=fopen("params.txt","r");
+fscanf(parametros,"%d", &n_side);
+fscanf(parametros,"%d", &MAXROWS);
+fclose(parametros);
+
+
 x=(int*) malloc(MAXROWS * sizeof(int));
 y=(int*) malloc(MAXROWS * sizeof(int));
 z=(int*) malloc(MAXROWS * sizeof(int));
@@ -92,16 +99,16 @@ return r;
 
 int nodo_mas_cercano(int ii,int jj,int kk){
     
-    double dist=pow(n_side,2);
-    int pert=0;
+    double dist=pow(n_side,2); //al azar numero grande
+    int perten=0;
     for(l = 0;l<MAXROWS;l++){
     double d1=dar_distancia(ii,jj,kk,x[l],y[l],z[l]);
     if(d1<dist){
     dist=d1;
-    pert=l+1;
+    perten=pert[l];
     }
     }
-    return pert;
+    return perten;
 }
 
 
@@ -121,19 +128,22 @@ PERT=(int*) malloc(longitud * sizeof(int));
 
 sampleOUT=fopen("voronoi_3D.txt","w");
 
-
+int m_pp=0;
 for(i=0;i<n_side;i++){
-printf("printing i = %d / %d \n",i,n_side);
+printf("printing i = %d / %d \n",i+1,n_side);
 for(j=0;j<n_side;j++){
 
 for(k=0;k<n_side;k++){
 int pp = nodo_mas_cercano(i,j,k);
-
+if(pp > m_pp){
+m_pp=pp;
+}
 fprintf(sampleOUT,"%d %d %d %d\n",i,j,k,pp);
 
 }
 }
 }
+printf("%d nodos usados en Voronoi.\n",m_pp);
 fclose(sampleOUT);
 return 0;
 }

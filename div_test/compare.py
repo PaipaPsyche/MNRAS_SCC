@@ -19,7 +19,7 @@ max_div=np.amax(DIV)
 min_node=np.amin(PERT_W)
 max_node=np.amax(PERT_W)
 
-
+print("Generando grficas comparativas watershed - voronoi ...")
 
 for i in range (n_side):
     print(i)

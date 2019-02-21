@@ -57,7 +57,7 @@ x_linea=np.array([0,_])
 y_linea=[0,_]
 plt.plot(x_linea,y_linea,color='k', linestyle='--',linewidth=2)
 
-im1 = ax1.scatter(x_w,y_v,s=5,c=list(np.arange(np.amax(PERT_V))),cmap="jet")
+im1 = ax1.scatter(x_w,y_v,s=5,c=list(np.arange(np.amax(PERT_V))),cmap="seismic")
 divider = make_axes_locatable(ax1)
 cax = divider.append_axes('bottom', size='5%', pad=0.6)
 ax1.set_xlabel("$V_{Watershed}$",fontsize=15)
@@ -72,6 +72,7 @@ cb.set_label("ID number")
 
 ax2 = fig.add_subplot(122)
 im2 = ax2.hist2d(x_w,y_v,bins=[16,16],cmap="nipy_spectral")
+plt.plot(x_linea,y_linea,color='white', linestyle='--',linewidth=2)
 
 divider = make_axes_locatable(ax2)
 cax = divider.append_axes('bottom', size='5%', pad=0.6)
@@ -82,6 +83,11 @@ cb.set_label("count")
 
 fig.savefig("vol_comp.png")
 plt.close()
+
+
+VOLS=np.array([x_w,y_v])
+np.save("VOLS.npy",VOLS)
+
 
 
 F_OUT=open("comp_volumenes.txt","w")

@@ -21,7 +21,7 @@ ex,ey,ez=[0,n_size-1],[0,n_size-1],[0,n_size-1]
 
 #grupo=356
 
-x1,y1,z1=np.where(PERT_W==grupo)
+x1,y1,z1=np.where(PERT_W=nh=grupo)
 x2,y2,z2=np.where(PERT_V==grupo)
 
 print(grupo)

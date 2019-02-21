@@ -1,16 +1,17 @@
-all:  watershed plot voronoi compare
+all:  watershed voronoi compare inertia
 watershed: 
 	python grid_div.py
 
-plotdiv: 
+plotdiv: compare
 	python plot_pert.py
+	
 
 
 imdir: plotdiv
-	mkdir newimages
+	mkdir images_watershed/
 
 plot: imdir
-	mv *.png newimages/
+	mv *.png images_watershed/
 
 
 c_vor_in: voronoi_c.c
@@ -24,15 +25,25 @@ c_run: c_vor
 
 voronoi: c_run
 	python new_vor.py
+	rm params.txt
 
-compare: watershed voronoi
-	python compare.py
+
+compare_gen: watershed voronoi
 	python vol_comp.py
 
+compare: compare_gen
+	mkdir images_comp/
+	mv *.png images_comp/
 
 
+inertia_gen:
+	python inertia.py
 
+inertia_stat: inertia_gen
+	python stats_inertia.py
 
+inertia: inertia_stat
+	mv *.png images_comp/
 
 
 

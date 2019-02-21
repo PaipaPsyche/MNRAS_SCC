@@ -30,3 +30,12 @@ Usando **pert_voronoi.npy** y **pert_watershed.npy** muestra comparaciones cuant
 *coef* es un coeficiente que se asigna para mirar la similitud en ordenes de magnitud. Cerca de 1 significa que ambos volumenes
 son similares, mientras que cerca de 0 significa ordenes de magnitud muy diferentes.
 
+
+### inertia
+usando  **pert_voronoi.npy** y **pert_watershed.npy** y un archivo de masa (si no es proporcionado se usa m=1 para cada voxel) se hacen calculos de inercia.
+* crea archivos **CALIBRACION_W.npy** y **CALIBRACION_V.npy** con los parametros de centrado para cada cumulo.
+* crea archivos **INERCIA_W.npy** y **INERCIA_V.npy** con los valores de inercia calculados para watershed y voronoi.
+* crea archivo **COORDS_REAL_V.npy** y **COORDS_REAL_W.npy** con las coordenadas reales de los centros de masa para cada cumulo.
+* crea archivo **COORDS_CENT_V.npy** y **COORDS_CENT_W.npy** con las coordenadas de los centros de masa para cada cumulo UNA VEZ CENTRADO.
+
+
